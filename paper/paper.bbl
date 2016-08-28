@@ -1,0 +1,11 @@
+\begin{thebibliography}{1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+
+\bibitem{xgboost}
+Chen, T., Guestrin, C.: {XGBoost: A Scalable Tree Boosting System}  (2016)
+
+\bibitem{stacking}
+Wolpert, D.H.: {Stacked Generalization}  (1992)
+
+\end{thebibliography}

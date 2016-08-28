@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: paper.aux
+The style file: splncs03.bst
+Database file #1: paper.bib
+Warning--empty journal in xgboost
+Warning--empty journal in stacking
+You've used 2 entries,
+            2785 wiz_defined-function locations,
+            590 strings with 4515 characters,
+and the built_in function-call counts, 704 in all, are:
+= -- 48
+> -- 19
+< -- 0
++ -- 8
+- -- 6
+* -- 45
+:= -- 107
+add.period$ -- 0
+call.type$ -- 2
+change.case$ -- 9
+chr.to.int$ -- 0
+cite$ -- 4
+duplicate$ -- 69
+empty$ -- 66
+format.name$ -- 7
+if$ -- 138
+int.to.chr$ -- 0
+int.to.str$ -- 2
+missing$ -- 15
+newline$ -- 11
+num.names$ -- 4
+pop$ -- 33
+preamble$ -- 1
+purify$ -- 7
+quote$ -- 0
+skip$ -- 16
+stack$ -- 0
+substring$ -- 26
+swap$ -- 24
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 8
+warning$ -- 2
+while$ -- 6
+width$ -- 3
+write$ -- 18
+(There were 2 warnings)

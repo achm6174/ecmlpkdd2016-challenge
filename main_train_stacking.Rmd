@@ -1,0 +1,105 @@
+---
+title: "ecmlpkdd2016"
+author: "Andy CHung"
+date: "22 May 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Config
+```{r results='hide', message=FALSE, warning=FALSE}
+rm(list = ls())  # Remove all objects
+gc()             # Garbage Collection
+options(scipen=99)
+setwd("~")
+
+library(xgboost)    # xgboost for Machine Learning
+library(data.table) # read file
+library(readr)
+
+```
+
+
+# 2Folds stacking
+```{r}
+# Number of stack
+NUM_STACK = 11
+
+## config
+N_FOLD = 5
+ETA = 0.3
+EARLY_STOP = 25
+LAMBDA = 30
+SUB_SAMPLE = 0.95
+MAX_DEPTH = 3
+MODEL_ID = 7
+
+params = list(booster = "gbtree", 
+              objective = "binary:logistic",
+              max_depth = MAX_DEPTH,
+              lambda = LAMBDA,
+              eta = ETA,
+              subsample = SUB_SAMPLE,
+              colsample_bytree = 0.7,
+              colsample_bylevel = 0.7,
+              seed = 6174)
+
+######### Load Data
+user_2014_month_1_6 = read_csv("Documents/github/ecmlpkdd2016_final/features/user_2014_month_1_6_new.csv")
+user_2014_month_7_12 = read_csv("Documents/github/ecmlpkdd2016_final/features/user_2014_month_7_12_new.csv")
+user_2015 = read_csv("Documents/github/ecmlpkdd2016_final/features/user_2015_preprocess_new.csv")
+
+
+### stacking vectors
+counter = 0
+for (i in list.files("Documents/github/ecmlpkdd2016_final/cache/2014-1-6_vector/")){
+  if (counter == NUM_STACK){
+    break
+  }
+  print(i)
+  tmp_f = read_csv(paste0("Documents/github/ecmlpkdd2016_final/cache/2014-1-6_vector/",i))
+  names(tmp_f) = c("USER_ID", i)
+  user_2014_month_1_6 = merge(user_2014_month_1_6, tmp_f, by= "USER_ID", all.x=T)
+  counter = counter+1
+}
+counter = 0
+for (i in list.files("Documents/github/ecmlpkdd2016_final/cache/2014-7-12_vector/")){
+  if (counter == NUM_STACK){
+    break
+  }  
+  print(i)
+  tmp_f = read_csv(paste0("Documents/github/ecmlpkdd2016_final/cache/2014-7-12_vector/",i))
+  names(tmp_f) = c("USER_ID", i)
+  user_2014_month_7_12 = merge(user_2014_month_7_12, tmp_f, by= "USER_ID", all.x = T)
+  counter = counter+1
+}
+
+user_2014 = rbind(as.matrix(user_2014_month_1_6),
+                  as.matrix(user_2014_month_7_12))
+user_2014 = data.frame(user_2014_month_1_6)
+
+train = user_2014
+train_target = train$TARGET_TASK_2
+train$TARGET_TASK_2 = NULL
+train$USER_ID = NULL
+
+
+## Init xgboost data frame
+set.seed(6174)
+dtrain = xgb.DMatrix(data = data.matrix(train),
+                     label = train_target)
+
+
+## CV for small data set
+model_cv = xgb.cv(params, dtrain, nrounds = 50000, nfold=N_FOLD, 
+      eval_metric = 'auc', maximize=T,
+      early.stop.round = EARLY_STOP, print.every.n = 1)
+
+```
+
+```{r}
+```

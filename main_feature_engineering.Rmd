@@ -1,0 +1,717 @@
+---
+title: "ecmlpkdd2016"
+author: "Andy CHung"
+date: "22 May 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Config
+```{r results='hide', message=FALSE, warning=FALSE}
+rm(list = ls())  # Remove all objects
+gc()             # Garbage Collection
+options(scipen=99)
+setwd("~")
+
+library(xgboost)    # xgboost for Machine Learning
+library(data.table) # read file
+library(readr)
+
+```
+
+
+## Load Data
+```{r}
+# Required data set
+bank_info = read_csv("Documents/github/ecmlpkdd2016_final/input/ecml_pkkd_2016_dataset/bank_info.csv")
+train_2014 = read_csv("Documents/github/ecmlpkdd2016_final/input/ecml_pkkd_2016_dataset/train_2014.csv")
+user_2014 = read_csv("Documents/github/ecmlpkdd2016_final/input/ecml_pkkd_2016_dataset/users_2014.csv")
+train_2015 = read_csv("Documents/github/ecmlpkdd2016_final/input/ecml_pkkd_2016_dataset/train_2015.csv")
+user_2015 = read_csv("Documents/github/ecmlpkdd2016_final/input/ecml_pkkd_2016_dataset/users_2015.csv")
+```
+
+
+## Training Data preparation
+```{r}
+## User_2014
+head(user_2014)
+unique(user_2014$AGE_CAT)
+user_2014$f_AGE_CAT_a  = as.numeric(user_2014$AGE_CAT == "a")
+user_2014$f_AGE_CAT_b  = as.numeric(user_2014$AGE_CAT == "b")
+user_2014$f_AGE_CAT_c  = as.numeric(user_2014$AGE_CAT == "c")
+user_2014$AGE_CAT = NULL
+unique(user_2014$LOC_CAT)
+user_2014$f_LOC_CAT_a  = as.numeric(user_2014$LOC_CAT == "a")
+user_2014$f_LOC_CAT_b  = as.numeric(user_2014$LOC_CAT == "b")
+user_2014$f_LOC_CAT_c  = as.numeric(user_2014$LOC_CAT == "c")
+user_2014$LOC_CAT = NULL
+unique(user_2014$INC_CAT)
+user_2014$f_INC_CAT_a  = as.numeric(user_2014$INC_CAT == "a")
+user_2014$f_INC_CAT_b  = as.numeric(user_2014$INC_CAT == "b")
+user_2014$f_INC_CAT_c  = as.numeric(user_2014$INC_CAT == "c")
+user_2014$f_INC_CAT_d  = as.numeric(user_2014$INC_CAT == "d")
+user_2014$INC_CAT = NULL
+
+# Check
+unique(user_2014$TARGET_TASK_2)
+
+# Make Month 1-6 data
+user_2014_month_1_6 = user_2014
+user_2014_month_1_6$W201407 = NULL
+user_2014_month_1_6$W201408 = NULL
+user_2014_month_1_6$W201409 = NULL
+user_2014_month_1_6$W201410 = NULL
+user_2014_month_1_6$W201411 = NULL
+user_2014_month_1_6$W201412 = NULL
+user_2014_month_1_6$C201407 = NULL
+user_2014_month_1_6$C201408 = NULL
+user_2014_month_1_6$C201409 = NULL
+user_2014_month_1_6$C201410 = NULL
+user_2014_month_1_6$C201411 = NULL
+user_2014_month_1_6$C201412 = NULL
+user_2014_month_1_6$TARGET_TASK_2 = as.Date(user_2014_month_1_6$TARGET_TASK_2,format='%Y.%m.%d')
+user_2014_month_1_6$TARGET_TASK_2 = user_2014_month_1_6$TARGET_TASK_2 < as.Date("2015.01.01",format='%Y.%m.%d') & 
+                                    user_2014_month_1_6$TARGET_TASK_2 >= as.Date("2014.07.01",format='%Y.%m.%d')
+user_2014_month_1_6$TARGET_TASK_2[is.na(user_2014_month_1_6$TARGET_TASK_2)] = F
+
+# Make Month 7-12 data
+user_2014_month_7_12 = user_2014
+user_2014_month_7_12$W201401 = NULL
+user_2014_month_7_12$W201402 = NULL
+user_2014_month_7_12$W201403 = NULL
+user_2014_month_7_12$W201404 = NULL
+user_2014_month_7_12$W201405 = NULL
+user_2014_month_7_12$W201406 = NULL
+user_2014_month_7_12$C201401 = NULL
+user_2014_month_7_12$C201402 = NULL
+user_2014_month_7_12$C201403 = NULL
+user_2014_month_7_12$C201404 = NULL
+user_2014_month_7_12$C201405 = NULL
+user_2014_month_7_12$C201406 = NULL
+user_2014_month_7_12$TARGET_TASK_2 = as.Date(user_2014_month_7_12$TARGET_TASK_2,format='%Y.%m.%d')
+user_2014_month_7_12$TARGET_TASK_2 = user_2014_month_7_12$TARGET_TASK_2 < as.Date("2015.07.01",format='%Y.%m.%d') & 
+                                    user_2014_month_7_12$TARGET_TASK_2 >= as.Date("2015.01.01",format='%Y.%m.%d')
+user_2014_month_7_12$TARGET_TASK_2[is.na(user_2014_month_7_12$TARGET_TASK_2)] = F
+
+user_2014_month_1_6$TARGET_TASK_2 = as.numeric(user_2014_month_1_6$TARGET_TASK_2)
+user_2014_month_7_12$TARGET_TASK_2 = as.numeric(user_2014_month_7_12$TARGET_TASK_2)
+
+## train_2014
+train_2014$DATE = as.Date(train_2014$DATE,format='%Y-%m-%d')
+
+length(unique(train_2014[train_2014$CHANNEL=="b",]$POI_ID))
+length(bank_info$POI_ID)
+
+tmp= merge(train_2014, bank_info,by="POI_ID", all.x=T)
+sum(is.na(tmp$GEO_X.x))
+sum(is.na(tmp$GEO_Y.x))
+sum(is.na(tmp$GEO_X.y))
+sum(is.na(tmp$GEO_Y.y))
+tmp[is.na(tmp$GEO_X.y),"GEO_X.y"] = 0
+tmp[is.na(tmp$GEO_Y.y),"GEO_Y.y"] = 0
+tmp$GEO_X = tmp$GEO_X.x + tmp$GEO_X.y
+tmp$GEO_Y = tmp$GEO_Y.x + tmp$GEO_Y.y
+tmp$GEO_X.x = NULL
+tmp$GEO_X.y = NULL
+tmp$GEO_Y.x = NULL
+tmp$GEO_Y.y = NULL
+train_2014 = tmp
+
+
+# train
+train_2014$f_CHANNEL_p = train_2014$CHANNEL == "p"
+train_2014$f_CHANNEL_n = train_2014$CHANNEL == "n"
+train_2014$f_CHANNEL_b = train_2014$CHANNEL == "b"
+train_2014$f_TIME_CAT = train_2014$TIME_CAT == "-"
+train_2014$f_TIME_CAT_a = train_2014$TIME_CAT == "a"
+train_2014$f_TIME_CAT_b = train_2014$TIME_CAT == "b"
+train_2014$f_TIME_CAT_c = train_2014$TIME_CAT == "c"
+train_2014$f_MC_CAT = train_2014$MC_CAT == "-"
+train_2014$f_MC_CAT_a = train_2014$MC_CAT == "a"
+train_2014$f_MC_CAT_b = train_2014$MC_CAT == "b"
+train_2014$f_MC_CAT_c = train_2014$MC_CAT == "c"
+train_2014$f_MC_CAT_d = train_2014$MC_CAT == "d"
+train_2014$f_MC_CAT_e = train_2014$MC_CAT == "e"
+train_2014$f_MC_CAT_f = train_2014$MC_CAT == "f"
+train_2014$f_MC_CAT_g = train_2014$MC_CAT == "g"
+train_2014$f_MC_CAT_h = train_2014$MC_CAT == "h"
+train_2014$f_MC_CAT_i = train_2014$MC_CAT == "i"
+train_2014$f_MC_CAT_j = train_2014$MC_CAT == "j"
+train_2014$f_CARD_CAT = train_2014$CARD_CAT == "-"
+train_2014$f_CARD_CAT_d = train_2014$CARD_CAT == "d"
+train_2014$f_CARD_CAT_c = train_2014$CARD_CAT == "c"
+train_2014$f_AMT_CAT = train_2014$AMT_CAT == "-"
+train_2014$f_AMT_CAT_a = train_2014$AMT_CAT == "a"
+train_2014$f_AMT_CAT_b = train_2014$AMT_CAT == "b"
+train_2014$f_AMT_CAT_c = train_2014$AMT_CAT == "c"
+
+tmp = user_2014[,c("USER_ID", "LOC_GEO_X", "LOC_GEO_Y")]
+train_2014 = merge(train_2014, tmp, by = "USER_ID", all.x = T)
+train_2014$DISTANCE = sqrt((train_2014$LOC_GEO_X - train_2014$GEO_X)^2 +
+                             (train_2014$LOC_GEO_Y - train_2014$GEO_Y)^2)
+train_2014[train_2014$GEO_X==0,"DISTANCE"] = 0
+
+#########################
+######################### 1-6
+filter_1 = (train_2014$DATE < as.Date("2014.07.01",format='%Y.%m.%d')) & (train_2014$DATE >= as.Date("2014.01.01",format='%Y.%m.%d'))
+tmp = train_2014[filter_1,]
+f_num_transactions = aggregate(tmp$POI_ID, by=list(tmp$USER_ID), length)
+f_num_unique_poi = aggregate(tmp$POI_ID, by=list(tmp$USER_ID), function(x){length(unique(x))})
+f_CHANNEL_p = aggregate(tmp$f_CHANNEL_p, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CHANNEL_n = aggregate(tmp$f_CHANNEL_n, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CHANNEL_b = aggregate(tmp$f_CHANNEL_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT = aggregate(tmp$f_TIME_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_a = aggregate(tmp$f_TIME_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_b = aggregate(tmp$f_TIME_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_c = aggregate(tmp$f_TIME_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT = aggregate(tmp$f_MC_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_a = aggregate(tmp$f_MC_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_b = aggregate(tmp$f_MC_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_c = aggregate(tmp$f_MC_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_d = aggregate(tmp$f_MC_CAT_d, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_e = aggregate(tmp$f_MC_CAT_e, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_f = aggregate(tmp$f_MC_CAT_f, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_g = aggregate(tmp$f_MC_CAT_g, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_h = aggregate(tmp$f_MC_CAT_h, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_i = aggregate(tmp$f_MC_CAT_i, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_j = aggregate(tmp$f_MC_CAT_j, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT = aggregate(tmp$f_CARD_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT_d = aggregate(tmp$f_CARD_CAT_d, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT_c = aggregate(tmp$f_CARD_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT = aggregate(tmp$f_AMT_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_a = aggregate(tmp$f_AMT_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_b = aggregate(tmp$f_AMT_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_c = aggregate(tmp$f_AMT_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_mean_x = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){mean(x)})
+f_mean_y = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){mean(x)})
+f_median_x = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_median_y = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_missing_xy = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){sum(x==0)}) #
+f_0_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sum(x==0)}) #
+f_mean_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){mean(x)}) #
+f_median_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_sd_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sd(x)}) #
+f_sum_disatance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sum(x)}) #
+f_max_x_shift = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){max(x)-min(x)})
+f_max_y_shift = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){max(x)-min(x)})
+f_month_1 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==1) })
+f_month_2 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==2) })
+f_month_3 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==3) })
+f_month_4 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==4) })
+f_month_5 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==5) })
+f_month_6 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==6) })
+
+
+names(f_num_transactions) = c("USER_ID", "f_num_transactions")
+names(f_num_unique_poi) = c("USER_ID", "f_num_unique_poi")
+names(f_CHANNEL_p) = c("USER_ID", "f_CHANNEL_p")
+names(f_CHANNEL_n) = c("USER_ID", "f_CHANNEL_n")
+names(f_CHANNEL_b) = c("USER_ID", "f_CHANNEL_b")
+names(f_TIME_CAT) = c("USER_ID", "f_TIME_CAT")
+names(f_TIME_CAT_a) = c("USER_ID", "f_TIME_CAT_a")
+names(f_TIME_CAT_b) = c("USER_ID", "f_TIME_CAT_b")
+names(f_TIME_CAT_c) = c("USER_ID", "f_TIME_CAT_c")
+names(f_MC_CAT) = c("USER_ID", "f_MC_CAT")
+names(f_MC_CAT_a) = c("USER_ID", "f_MC_CAT_a")
+names(f_MC_CAT_b) = c("USER_ID", "f_MC_CAT_b")
+names(f_MC_CAT_c) = c("USER_ID", "f_MC_CAT_c")
+names(f_MC_CAT_d) = c("USER_ID", "f_MC_CAT_d")
+names(f_MC_CAT_e) = c("USER_ID", "f_MC_CAT_e")
+names(f_MC_CAT_f) = c("USER_ID", "f_MC_CAT_f")
+names(f_MC_CAT_g) = c("USER_ID", "f_MC_CAT_g")
+names(f_MC_CAT_h) = c("USER_ID", "f_MC_CAT_h")
+names(f_MC_CAT_i) = c("USER_ID", "f_MC_CAT_i")
+names(f_MC_CAT_j) = c("USER_ID", "f_MC_CAT_j")
+names(f_CARD_CAT) = c("USER_ID", "f_CARD_CAT")
+names(f_CARD_CAT_d) = c("USER_ID", "f_CARD_CAT_d")
+names(f_CARD_CAT_c) = c("USER_ID", "f_CARD_CAT_c")
+names(f_AMT_CAT) = c("USER_ID", "f_AMT_CAT")
+names(f_AMT_CAT_a) = c("USER_ID", "f_AMT_CAT_a")
+names(f_AMT_CAT_b) = c("USER_ID", "f_AMT_CAT_b")
+names(f_AMT_CAT_c) = c("USER_ID", "f_AMT_CAT_c")
+names(f_mean_x) = c("USER_ID", "f_mean_x")
+names(f_mean_y) = c("USER_ID", "f_mean_y")
+names(f_median_x) = c("USER_ID", "f_median_x") #
+names(f_median_y) = c("USER_ID", "f_median_y") #
+names(f_missing_xy) = c("USER_ID", "f_missing_xy") #
+names(f_0_distance) = c("USER_ID", "f_0_distance") #
+names(f_mean_distance) = c("USER_ID", "f_mean_distance") #
+names(f_median_distance) = c("USER_ID", "f_median_distance") #
+names(f_sd_distance) = c("USER_ID", "f_sd_distance") #
+names(f_sum_disatance) = c("USER_ID", "f_sum_disatance") #
+names(f_max_x_shift) = c("USER_ID", "f_max_x_shift")
+names(f_max_y_shift) = c("USER_ID", "f_max_y_shift")
+names(f_month_1) = c("USER_ID", "f_month_1")
+names(f_month_2) = c("USER_ID", "f_month_2")
+names(f_month_3) = c("USER_ID", "f_month_3")
+names(f_month_4) = c("USER_ID", "f_month_4")
+names(f_month_5) = c("USER_ID", "f_month_5")
+names(f_month_6) = c("USER_ID", "f_month_6")
+
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_num_transactions, by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6,f_num_unique_poi , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_CHANNEL_p , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_CHANNEL_n , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_CHANNEL_b, by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_TIME_CAT , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_TIME_CAT_a, by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_TIME_CAT_b , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_TIME_CAT_c , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_a , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_b , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_c , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_d , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_e , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_f , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_g , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_h , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_i , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_MC_CAT_j , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_CARD_CAT , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_CARD_CAT_d , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_CARD_CAT_c , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_AMT_CAT , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_AMT_CAT_a , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_AMT_CAT_b , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_AMT_CAT_c , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_mean_x, by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_mean_y, by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_median_x, by="USER_ID",all.x=T) #
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_median_y, by="USER_ID",all.x=T) #
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_missing_xy, by="USER_ID",all.x=T) #
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_0_distance, by="USER_ID",all.x=T) #
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_mean_distance, by="USER_ID",all.x=T) #
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_median_distance, by="USER_ID",all.x=T) #
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_sd_distance, by="USER_ID",all.x=T) #
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_sum_disatance, by="USER_ID",all.x=T) #
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_max_x_shift , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_max_y_shift , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_month_1 , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_month_2 , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6, f_month_3 , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6,f_month_4 , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6,f_month_5 , by="USER_ID",all.x=T)
+user_2014_month_1_6 = merge(user_2014_month_1_6,f_month_6 , by="USER_ID",all.x=T)
+
+
+
+user_2014_month_1_6$mean_shift = sqrt((user_2014_month_1_6$f_mean_x - user_2014_month_1_6$LOC_GEO_X)^2 + (user_2014_month_1_6$f_mean_y - user_2014_month_1_6$LOC_GEO_Y)^2)
+user_2014_month_1_6$mean_x_shift = (user_2014_month_1_6$f_mean_x - user_2014_month_1_6$LOC_GEO_X)^2
+user_2014_month_1_6$mean_y_shift = (user_2014_month_1_6$f_mean_y - user_2014_month_1_6$LOC_GEO_Y)^2
+
+for (i in names(user_2014_month_1_6)){
+  if (sum(is.na(user_2014_month_1_6[,i]))>0){
+    user_2014_month_1_6[is.na(user_2014_month_1_6[,i]),i] = -999999
+  }
+}
+
+
+
+write.csv(user_2014_month_1_6, "Documents/github/ecmlpkdd2016_final/features/user_2014_month_1_6_new.csv", row.names = F)
+
+#########################
+######################### 7-12
+filter_1 = (train_2014$DATE < as.Date("2015.01.01",format='%Y.%m.%d')) & (train_2014$DATE >= as.Date("2014.07.01",format='%Y.%m.%d'))
+tmp = train_2014[filter_1,]
+
+f_num_transactions = aggregate(tmp$POI_ID, by=list(tmp$USER_ID), length)
+f_num_unique_poi = aggregate(tmp$POI_ID, by=list(tmp$USER_ID), function(x){length(unique(x))})
+f_CHANNEL_p = aggregate(tmp$f_CHANNEL_p, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CHANNEL_n = aggregate(tmp$f_CHANNEL_n, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CHANNEL_b = aggregate(tmp$f_CHANNEL_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT = aggregate(tmp$f_TIME_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_a = aggregate(tmp$f_TIME_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_b = aggregate(tmp$f_TIME_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_c = aggregate(tmp$f_TIME_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT = aggregate(tmp$f_MC_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_a = aggregate(tmp$f_MC_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_b = aggregate(tmp$f_MC_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_c = aggregate(tmp$f_MC_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_d = aggregate(tmp$f_MC_CAT_d, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_e = aggregate(tmp$f_MC_CAT_e, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_f = aggregate(tmp$f_MC_CAT_f, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_g = aggregate(tmp$f_MC_CAT_g, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_h = aggregate(tmp$f_MC_CAT_h, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_i = aggregate(tmp$f_MC_CAT_i, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_j = aggregate(tmp$f_MC_CAT_j, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT = aggregate(tmp$f_CARD_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT_d = aggregate(tmp$f_CARD_CAT_d, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT_c = aggregate(tmp$f_CARD_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT = aggregate(tmp$f_AMT_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_a = aggregate(tmp$f_AMT_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_b = aggregate(tmp$f_AMT_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_c = aggregate(tmp$f_AMT_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_mean_x = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){mean(x)})
+f_mean_y = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){mean(x)})
+f_median_x = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_median_y = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_missing_xy = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){sum(x==0)}) #
+f_0_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sum(x==0)}) #
+f_mean_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){mean(x)}) #
+f_median_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_sd_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sd(x)}) #
+f_sum_disatance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sum(x)}) #
+f_max_x_shift = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){max(x)-min(x)})
+f_max_y_shift = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){max(x)-min(x)})
+f_month_1 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==7) })
+f_month_2 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==8) })
+f_month_3 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==9) })
+f_month_4 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==10) })
+f_month_5 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==11) })
+f_month_6 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==12) })
+
+
+names(f_num_transactions) = c("USER_ID", "f_num_transactions")
+names(f_num_unique_poi) = c("USER_ID", "f_num_unique_poi")
+names(f_CHANNEL_p) = c("USER_ID", "f_CHANNEL_p")
+names(f_CHANNEL_n) = c("USER_ID", "f_CHANNEL_n")
+names(f_CHANNEL_b) = c("USER_ID", "f_CHANNEL_b")
+names(f_TIME_CAT) = c("USER_ID", "f_TIME_CAT")
+names(f_TIME_CAT_a) = c("USER_ID", "f_TIME_CAT_a")
+names(f_TIME_CAT_b) = c("USER_ID", "f_TIME_CAT_b")
+names(f_TIME_CAT_c) = c("USER_ID", "f_TIME_CAT_c")
+names(f_MC_CAT) = c("USER_ID", "f_MC_CAT")
+names(f_MC_CAT_a) = c("USER_ID", "f_MC_CAT_a")
+names(f_MC_CAT_b) = c("USER_ID", "f_MC_CAT_b")
+names(f_MC_CAT_c) = c("USER_ID", "f_MC_CAT_c")
+names(f_MC_CAT_d) = c("USER_ID", "f_MC_CAT_d")
+names(f_MC_CAT_e) = c("USER_ID", "f_MC_CAT_e")
+names(f_MC_CAT_f) = c("USER_ID", "f_MC_CAT_f")
+names(f_MC_CAT_g) = c("USER_ID", "f_MC_CAT_g")
+names(f_MC_CAT_h) = c("USER_ID", "f_MC_CAT_h")
+names(f_MC_CAT_i) = c("USER_ID", "f_MC_CAT_i")
+names(f_MC_CAT_j) = c("USER_ID", "f_MC_CAT_j")
+names(f_CARD_CAT) = c("USER_ID", "f_CARD_CAT")
+names(f_CARD_CAT_d) = c("USER_ID", "f_CARD_CAT_d")
+names(f_CARD_CAT_c) = c("USER_ID", "f_CARD_CAT_c")
+names(f_AMT_CAT) = c("USER_ID", "f_AMT_CAT")
+names(f_AMT_CAT_a) = c("USER_ID", "f_AMT_CAT_a")
+names(f_AMT_CAT_b) = c("USER_ID", "f_AMT_CAT_b")
+names(f_AMT_CAT_c) = c("USER_ID", "f_AMT_CAT_c")
+names(f_mean_x) = c("USER_ID", "f_mean_x")
+names(f_mean_y) = c("USER_ID", "f_mean_y")
+names(f_median_x) = c("USER_ID", "f_median_x") #
+names(f_median_y) = c("USER_ID", "f_median_y") #
+names(f_missing_xy) = c("USER_ID", "f_missing_xy") #
+names(f_0_distance) = c("USER_ID", "f_0_distance") #
+names(f_mean_distance) = c("USER_ID", "f_mean_distance") #
+names(f_median_distance) = c("USER_ID", "f_median_distance") #
+names(f_sd_distance) = c("USER_ID", "f_sd_distance") #
+names(f_sum_disatance) = c("USER_ID", "f_sum_disatance") #
+names(f_max_x_shift) = c("USER_ID", "f_max_x_shift")
+names(f_max_y_shift) = c("USER_ID", "f_max_y_shift")
+names(f_month_1) = c("USER_ID", "f_month_1")
+names(f_month_2) = c("USER_ID", "f_month_2")
+names(f_month_3) = c("USER_ID", "f_month_3")
+names(f_month_4) = c("USER_ID", "f_month_4")
+names(f_month_5) = c("USER_ID", "f_month_5")
+names(f_month_6) = c("USER_ID", "f_month_6")
+
+
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_num_transactions, by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12,f_num_unique_poi , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_CHANNEL_p , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_CHANNEL_n , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_CHANNEL_b, by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_TIME_CAT , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_TIME_CAT_a, by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_TIME_CAT_b , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_TIME_CAT_c , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_a , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_b , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_c , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_d , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_e , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_f , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_g , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_h , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_i , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_MC_CAT_j , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_CARD_CAT , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_CARD_CAT_d , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_CARD_CAT_c , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_AMT_CAT , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_AMT_CAT_a , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_AMT_CAT_b , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_AMT_CAT_c , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_mean_x, by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_mean_y, by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_median_x, by="USER_ID",all.x=T) #
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_median_y, by="USER_ID",all.x=T) #
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_missing_xy, by="USER_ID",all.x=T) #
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_0_distance, by="USER_ID",all.x=T) #
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_mean_distance, by="USER_ID",all.x=T) #
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_median_distance, by="USER_ID",all.x=T) #
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_sd_distance, by="USER_ID",all.x=T) #
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_sum_disatance, by="USER_ID",all.x=T) #
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_max_x_shift , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_max_y_shift , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_month_1 , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_month_2 , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12, f_month_3 , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12,f_month_4 , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12,f_month_5 , by="USER_ID",all.x=T)
+user_2014_month_7_12 = merge(user_2014_month_7_12,f_month_6 , by="USER_ID",all.x=T)
+
+
+
+user_2014_month_7_12$mean_shift = sqrt((user_2014_month_7_12$f_mean_x - user_2014_month_7_12$LOC_GEO_X)^2 + (user_2014_month_7_12$f_mean_y - user_2014_month_7_12$LOC_GEO_Y)^2)
+user_2014_month_7_12$mean_x_shift = (user_2014_month_7_12$f_mean_x - user_2014_month_7_12$LOC_GEO_X)^2
+user_2014_month_7_12$mean_y_shift = (user_2014_month_7_12$f_mean_y - user_2014_month_7_12$LOC_GEO_Y)^2
+
+for (i in names(user_2014_month_7_12)){
+  if (sum(is.na(user_2014_month_7_12[,i]))>0){
+    user_2014_month_7_12[is.na(user_2014_month_7_12[,i]),i] = -999999
+  }
+}
+
+write.csv(user_2014_month_7_12, "Documents/github/ecmlpkdd2016_final/features/user_2014_month_7_12_new.csv", row.names = F)
+```
+
+
+## Testing Data preparation
+```{r}
+## User_2015
+head(user_2015)
+unique(user_2015$AGE_CAT)
+user_2015$f_AGE_CAT_a  = as.numeric(user_2015$AGE_CAT == "a")
+user_2015$f_AGE_CAT_b  = as.numeric(user_2015$AGE_CAT == "b")
+user_2015$f_AGE_CAT_c  = as.numeric(user_2015$AGE_CAT == "c")
+user_2015$AGE_CAT = NULL
+unique(user_2015$LOC_CAT)
+user_2015$f_LOC_CAT_a  = as.numeric(user_2015$LOC_CAT == "a")
+user_2015$f_LOC_CAT_b  = as.numeric(user_2015$LOC_CAT == "b")
+user_2015$f_LOC_CAT_c  = as.numeric(user_2015$LOC_CAT == "c")
+user_2015$LOC_CAT = NULL
+unique(user_2015$INC_CAT)
+user_2015$f_INC_CAT_a  = as.numeric(user_2015$INC_CAT == "a")
+user_2015$f_INC_CAT_b  = as.numeric(user_2015$INC_CAT == "b")
+user_2015$f_INC_CAT_c  = as.numeric(user_2015$INC_CAT == "c")
+user_2015$f_INC_CAT_d  = as.numeric(user_2015$INC_CAT == "d")
+user_2015$INC_CAT = NULL
+
+## train_2015
+train_2015$DATE = as.Date(train_2015$DATE,format='%Y-%m-%d')
+
+length(unique(train_2015[train_2015$CHANNEL=="b",]$POI_ID))
+length(bank_info$POI_ID)
+
+tmp= merge(train_2015, bank_info,by="POI_ID", all.x=T)
+sum(is.na(tmp$GEO_X.x))
+sum(is.na(tmp$GEO_Y.x))
+sum(is.na(tmp$GEO_X.y))
+sum(is.na(tmp$GEO_Y.y))
+tmp[is.na(tmp$GEO_X.y),"GEO_X.y"] = 0
+tmp[is.na(tmp$GEO_Y.y),"GEO_Y.y"] = 0
+tmp$GEO_X = tmp$GEO_X.x + tmp$GEO_X.y
+tmp$GEO_Y = tmp$GEO_Y.x + tmp$GEO_Y.y
+tmp$GEO_X.x = NULL
+tmp$GEO_X.y = NULL
+tmp$GEO_Y.x = NULL
+tmp$GEO_Y.y = NULL
+train_2015 = tmp
+
+# train
+train_2015$f_CHANNEL_p = train_2015$CHANNEL == "p"
+train_2015$f_CHANNEL_n = train_2015$CHANNEL == "n"
+train_2015$f_CHANNEL_b = train_2015$CHANNEL == "b"
+train_2015$f_TIME_CAT = train_2015$TIME_CAT == "-"
+train_2015$f_TIME_CAT_a = train_2015$TIME_CAT == "a"
+train_2015$f_TIME_CAT_b = train_2015$TIME_CAT == "b"
+train_2015$f_TIME_CAT_c = train_2015$TIME_CAT == "c"
+train_2015$f_MC_CAT = train_2015$MC_CAT == "-"
+train_2015$f_MC_CAT_a = train_2015$MC_CAT == "a"
+train_2015$f_MC_CAT_b = train_2015$MC_CAT == "b"
+train_2015$f_MC_CAT_c = train_2015$MC_CAT == "c"
+train_2015$f_MC_CAT_d = train_2015$MC_CAT == "d"
+train_2015$f_MC_CAT_e = train_2015$MC_CAT == "e"
+train_2015$f_MC_CAT_f = train_2015$MC_CAT == "f"
+train_2015$f_MC_CAT_g = train_2015$MC_CAT == "g"
+train_2015$f_MC_CAT_h = train_2015$MC_CAT == "h"
+train_2015$f_MC_CAT_i = train_2015$MC_CAT == "i"
+train_2015$f_MC_CAT_j = train_2015$MC_CAT == "j"
+train_2015$f_CARD_CAT = train_2015$CARD_CAT == "-"
+train_2015$f_CARD_CAT_d = train_2015$CARD_CAT == "d"
+train_2015$f_CARD_CAT_c = train_2015$CARD_CAT == "c"
+train_2015$f_AMT_CAT = train_2015$AMT_CAT == "-"
+train_2015$f_AMT_CAT_a = train_2015$AMT_CAT == "a"
+train_2015$f_AMT_CAT_b = train_2015$AMT_CAT == "b"
+train_2015$f_AMT_CAT_c = train_2015$AMT_CAT == "c"
+
+tmp = user_2015[,c("USER_ID", "LOC_GEO_X", "LOC_GEO_Y")]
+train_2015 = merge(train_2015, tmp, by = "USER_ID", all.x = T)
+train_2015$DISTANCE = sqrt((train_2015$LOC_GEO_X - train_2015$GEO_X)^2 +
+                             (train_2015$LOC_GEO_Y - train_2015$GEO_Y)^2)
+train_2015[train_2015$GEO_X==0,"DISTANCE"] = 0
+
+
+tmp = train_2015
+f_num_transactions = aggregate(tmp$POI_ID, by=list(tmp$USER_ID), length)
+f_num_unique_poi = aggregate(tmp$POI_ID, by=list(tmp$USER_ID), function(x){length(unique(x))})
+f_CHANNEL_p = aggregate(tmp$f_CHANNEL_p, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CHANNEL_n = aggregate(tmp$f_CHANNEL_n, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CHANNEL_b = aggregate(tmp$f_CHANNEL_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT = aggregate(tmp$f_TIME_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_a = aggregate(tmp$f_TIME_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_b = aggregate(tmp$f_TIME_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_TIME_CAT_c = aggregate(tmp$f_TIME_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT = aggregate(tmp$f_MC_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_a = aggregate(tmp$f_MC_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_b = aggregate(tmp$f_MC_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_c = aggregate(tmp$f_MC_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_d = aggregate(tmp$f_MC_CAT_d, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_e = aggregate(tmp$f_MC_CAT_e, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_f = aggregate(tmp$f_MC_CAT_f, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_g = aggregate(tmp$f_MC_CAT_g, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_h = aggregate(tmp$f_MC_CAT_h, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_i = aggregate(tmp$f_MC_CAT_i, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_MC_CAT_j = aggregate(tmp$f_MC_CAT_j, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT = aggregate(tmp$f_CARD_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT_d = aggregate(tmp$f_CARD_CAT_d, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_CARD_CAT_c = aggregate(tmp$f_CARD_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT = aggregate(tmp$f_AMT_CAT, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_a = aggregate(tmp$f_AMT_CAT_a, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_b = aggregate(tmp$f_AMT_CAT_b, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_AMT_CAT_c = aggregate(tmp$f_AMT_CAT_c, by=list(tmp$USER_ID),FUN= function(x){sum(x)})
+f_mean_x = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){mean(x)})
+f_mean_y = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){mean(x)})
+f_median_x = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_median_y = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_missing_xy = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){sum(x==0)}) #
+f_0_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sum(x==0)}) #
+f_mean_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){mean(x)}) #
+f_median_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){median(x)}) #
+f_sd_distance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sd(x)}) #
+f_sum_disatance = aggregate(tmp$DISTANCE, by=list(tmp$USER_ID),FUN= function(x){sum(x)}) #
+f_max_x_shift = aggregate(tmp$GEO_X, by=list(tmp$USER_ID),FUN= function(x){max(x)-min(x)})
+f_max_y_shift = aggregate(tmp$GEO_Y, by=list(tmp$USER_ID),FUN= function(x){max(x)-min(x)})
+f_month_1 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==1) })
+f_month_2 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==2) })
+f_month_3 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==3) })
+f_month_4 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==4) })
+f_month_5 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==5) })
+f_month_6 = aggregate(tmp$DATE, by=list(tmp$USER_ID),FUN= function(x){ sum(month(x)==6) })
+
+
+
+names(f_num_transactions) = c("USER_ID", "f_num_transactions")
+names(f_num_unique_poi) = c("USER_ID", "f_num_unique_poi")
+names(f_CHANNEL_p) = c("USER_ID", "f_CHANNEL_p")
+names(f_CHANNEL_n) = c("USER_ID", "f_CHANNEL_n")
+names(f_CHANNEL_b) = c("USER_ID", "f_CHANNEL_b")
+names(f_TIME_CAT) = c("USER_ID", "f_TIME_CAT")
+names(f_TIME_CAT_a) = c("USER_ID", "f_TIME_CAT_a")
+names(f_TIME_CAT_b) = c("USER_ID", "f_TIME_CAT_b")
+names(f_TIME_CAT_c) = c("USER_ID", "f_TIME_CAT_c")
+names(f_MC_CAT) = c("USER_ID", "f_MC_CAT")
+names(f_MC_CAT_a) = c("USER_ID", "f_MC_CAT_a")
+names(f_MC_CAT_b) = c("USER_ID", "f_MC_CAT_b")
+names(f_MC_CAT_c) = c("USER_ID", "f_MC_CAT_c")
+names(f_MC_CAT_d) = c("USER_ID", "f_MC_CAT_d")
+names(f_MC_CAT_e) = c("USER_ID", "f_MC_CAT_e")
+names(f_MC_CAT_f) = c("USER_ID", "f_MC_CAT_f")
+names(f_MC_CAT_g) = c("USER_ID", "f_MC_CAT_g")
+names(f_MC_CAT_h) = c("USER_ID", "f_MC_CAT_h")
+names(f_MC_CAT_i) = c("USER_ID", "f_MC_CAT_i")
+names(f_MC_CAT_j) = c("USER_ID", "f_MC_CAT_j")
+names(f_CARD_CAT) = c("USER_ID", "f_CARD_CAT")
+names(f_CARD_CAT_d) = c("USER_ID", "f_CARD_CAT_d")
+names(f_CARD_CAT_c) = c("USER_ID", "f_CARD_CAT_c")
+names(f_AMT_CAT) = c("USER_ID", "f_AMT_CAT")
+names(f_AMT_CAT_a) = c("USER_ID", "f_AMT_CAT_a")
+names(f_AMT_CAT_b) = c("USER_ID", "f_AMT_CAT_b")
+names(f_AMT_CAT_c) = c("USER_ID", "f_AMT_CAT_c")
+names(f_mean_x) = c("USER_ID", "f_mean_x")
+names(f_mean_y) = c("USER_ID", "f_mean_y")
+names(f_median_x) = c("USER_ID", "f_median_x") #
+names(f_median_y) = c("USER_ID", "f_median_y") #
+names(f_missing_xy) = c("USER_ID", "f_missing_xy") #
+names(f_0_distance) = c("USER_ID", "f_0_distance") #
+names(f_mean_distance) = c("USER_ID", "f_mean_distance") #
+names(f_median_distance) = c("USER_ID", "f_median_distance") #
+names(f_sd_distance) = c("USER_ID", "f_sd_distance") #
+names(f_sum_disatance) = c("USER_ID", "f_sum_disatance") #
+names(f_max_x_shift) = c("USER_ID", "f_max_x_shift")
+names(f_max_y_shift) = c("USER_ID", "f_max_y_shift")
+names(f_month_1) = c("USER_ID", "f_month_1")
+names(f_month_2) = c("USER_ID", "f_month_2")
+names(f_month_3) = c("USER_ID", "f_month_3")
+names(f_month_4) = c("USER_ID", "f_month_4")
+names(f_month_5) = c("USER_ID", "f_month_5")
+names(f_month_6) = c("USER_ID", "f_month_6")
+
+
+
+user_2015 = merge(user_2015, f_num_transactions, by="USER_ID",all.x=T)
+user_2015 = merge(user_2015,f_num_unique_poi , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_CHANNEL_p , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_CHANNEL_n , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_CHANNEL_b, by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_TIME_CAT , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_TIME_CAT_a, by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_TIME_CAT_b , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_TIME_CAT_c , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_a , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_b , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_c , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_d , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_e , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_f , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_g , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_h , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_i , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_MC_CAT_j , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_CARD_CAT , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_CARD_CAT_d , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_CARD_CAT_c , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_AMT_CAT , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_AMT_CAT_a , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_AMT_CAT_b , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_AMT_CAT_c , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_mean_x, by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_mean_y, by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_median_x, by="USER_ID",all.x=T) #
+user_2015 = merge(user_2015, f_median_y, by="USER_ID",all.x=T) #
+user_2015 = merge(user_2015, f_missing_xy, by="USER_ID",all.x=T) #
+user_2015 = merge(user_2015, f_0_distance, by="USER_ID",all.x=T) #
+user_2015 = merge(user_2015, f_mean_distance, by="USER_ID",all.x=T) #
+user_2015 = merge(user_2015, f_median_distance, by="USER_ID",all.x=T) #
+user_2015 = merge(user_2015, f_sd_distance, by="USER_ID",all.x=T) #
+user_2015 = merge(user_2015, f_sum_disatance, by="USER_ID",all.x=T) #
+user_2015 = merge(user_2015, f_max_x_shift , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_max_y_shift , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_month_1 , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_month_2 , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015, f_month_3 , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015,f_month_4 , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015,f_month_5 , by="USER_ID",all.x=T)
+user_2015 = merge(user_2015,f_month_6 , by="USER_ID",all.x=T)
+
+
+
+
+user_2015$mean_shift = sqrt((user_2015$f_mean_x - user_2015$LOC_GEO_X)^2 + (user_2015$f_mean_y - user_2015$LOC_GEO_Y)^2)
+user_2015$mean_x_shift = (user_2015$f_mean_x - user_2015$LOC_GEO_X)^2
+user_2015$mean_y_shift = (user_2015$f_mean_y - user_2015$LOC_GEO_Y)^2
+
+
+for (i in names(user_2015)){
+  if (sum(is.na(user_2015[,i]))>0){
+    user_2015[is.na(user_2015[,i]),i] = -999999
+  }
+}
+
+
+write.csv(user_2015, "Documents/github/ecmlpkdd2016/features/user_2015_preprocess_new.csv", row.names = F)
+
+```
+
+
+
