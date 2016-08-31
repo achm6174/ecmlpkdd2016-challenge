@@ -1,5 +1,6 @@
 library("reshape2")
 library("ggplot2")
+library(ggthemes)
 #p <- ggplot(mtcars, aes(wt, mpg))
 #p + geom_point()
 #p + geom_point(aes(colour = factor(cyl),shape = factor(cyl))) + geom_line()
@@ -60,5 +61,13 @@ test_data
 ggplot(df_train, aes(x=stack, y=value, colour=group)) + 
   geom_errorbar(aes(ymin=value+var, ymax=value-var), width=0.5) +
   geom_line() +
-  labs(list(title = "Local/Actual Performance with randomized stacking features", x = "Number of Randomized Stacking Features", y = "AUC"))+
-  geom_point()
+  labs(list(
+            x = "Number of Randomized Stacking Features", y = "AUC")) +
+  geom_point(aes(shape = factor(group)), size = 4)  + 
+  guides(shape = FALSE,
+         colour = guide_legend(override.aes = list(shape = c(16, 17),
+                                                   linetype = c("solid", "solid"))))+
+  theme_minimal(base_size =20) + 
+  theme(legend.title = element_blank(),
+        legend.position="bottom")
+

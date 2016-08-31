@@ -4,15 +4,15 @@
 %This is good for other readers to enable proper archiving among other papers and pointing to content.
 %Even if the title page states the title, when printed and stored in a folder, when blindly opening the folder, one could hit not the title page, but an arbitrary page. Therefore, it is good to have title printed on the pages, too.
 \documentclass[a4paper]{llncs}
-\usepackage{algorithm}
-\usepackage[noend]{algpseudocode}
+%\usepackage{algorithm}
+%\usepackage[noend]{algpseudocode}
+\usepackage[linesnumbered,ruled]{algorithm2e}
 \makeatletter
 \def\BState{\State\hskip-\ALG@thistlm}
 \makeatother
 \usepackage{indentfirst}
 %Even though `american`, `english` and `USenglish` are synonyms for babel package (according to https://tex.stackexchange.com/questions/12775/babel-english-american-usenglish), the llncs document class is prepared to avoid the overriding of certain names (such as "Abstract." -> "Abstract" or "Fig." -> "Figure") when using `english`, but not when using the other 2.
 \usepackage[english]{babel}
-
 \usepackage{amsmath}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
@@ -281,45 +281,116 @@ Branch location latitude and longitude are treated as continuous variables. Deri
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 The idea of Stacked Generalization \cite{stacking} is to use a group of first stage models to do prediction,
  followed by a second stage model using all the predictions from first stage models as input features.
- For task 2, we applied 2-folds stacking split by two different time frame
- and two 10-folds stacking on each time frame separately.
+
 
 For a N-folds stacking:
 
 \begin{enumerate}
- \item Split the training set in $N$ parts: $training_1, training_2, ..., training_N$
+ \item Split the training set in $N$ parts: $training_1, training_2, ..., training_N$ using stratified or random split
 
- \item Predict $testing$ and $training_1$ using $N-1$ folds ($training_2$, $training_3$, $...$, $training_N$) with first stage models
+ \item Predict $testing$ and $training_1$ using original features from $N-1$ folds ($training_2$, $training_3$, $...$, $training_N$) with first stage models
 
  \item Similarly for $training_2, training_3, ... training_N$, the prediction for testing is the average of $N$ prediction of $testing$
 
- \item Train the second stage model based on the first stage predictions
+ \item Train the second stage model based on original features and first stage predictions
+\end{enumerate}
+%
+
+
+
+% \begin{algorithm}
+%     \SetKwInOut{Input}{Input}
+%     \SetKwInOut{Output}{Output}
+%
+%     \underline{function Stacking} $(df\_train, df\_test, df\_train\_target, num\_folds, stacking\_index,model$)\;
+%     \Input{$df\_train$: Dataframe for training features \newline
+%            $df\_test$: Dataframe for testing features \newline
+%            $df\_train\_target$: Target variable for training data \newline
+%            $num\_folds$: number of folds \newline
+%            $model$: Prediction Model with method fit and predict
+%            }
+%     \Output{Stacking Feature}
+%
+%     \emph{// Randomly split dataset}\\
+%
+%
+%
+%
+%
+%     \For{$k=1$ {\bfseries to} $num\_folds$ }{
+%
+%         tmp_valid = df_train
+%         tmp_train = df_train
+%
+%
+%     }
+%
+%     \eIf{$b=0$}
+%       {
+%         return $a$\;
+%       }
+%       {
+%         return Euclid$(b,a\mod b)$\;
+%       }
+%     \caption{Stacking algorithm}
+% \end{algorithm}
+
+
+
+We only applied stacking on task 2.
+We tried two stacking method seperately
+\begin{enumerate}
+ \item 2-folds stacking split by two different time frame
+
+ \item 10-folds stacking after merging two time frame
 \end{enumerate}
 
+Since stacking index must be fixed in order to avoid leakage, we can only choose either 2-folds or 10-folds.
+Although 10 folds is a common choice as it provides minmial information loss, we finally choose two folds for two reasons:
+\begin{enumerate}
+ \item The training data is a combination data in two periods. It provides out-of-period stacking feature split by time, which is useful to avoid overfitting.
+
+ \item Both stacking provides improvement on local CV, but 10 folds show discrepancy betweem CV and 30\% of testing data.
+\end{enumerate}
+
+In practice, a diversified combination of stacking features from different algorithms (KNN, RandomForest, SVM, NN, etc.)
+will usually outperform stacking using only one algorithm.
+Since we only used xgboost here, we tried to compensate this by building several stacking features using randomized parameters.
 
 
-\begin{algorithm}
-\caption{Stacking}\label{euclid}
-\begin{algorithmic}[1]
-\Procedure{MyProcedure}{}
-\State $\textit{stringlen} \gets \text{length of }\textit{string}$
-\State $i \gets \textit{patlen}$
-\BState \emph{top}:
-\If {$i > \textit{stringlen}$} \Return false
-\EndIf
-\State $j \gets \textit{patlen}$
-\BState \emph{loop}:
-\If {$\textit{string}(i) = \textit{path}(j)$}
-\State $j \gets j-1$.
-\State $i \gets i-1$.
-\State \textbf{goto} \emph{loop}.
-\State \textbf{close};
-\EndIf
-\State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
-\State \textbf{goto} \emph{top}.
-\EndProcedure
-\end{algorithmic}
-\end{algorithm}
+Fig. 1 shows the AUC perfomance of CV result and 30\% of testing data. Although there's a difference of AUC between local CV and 30\% of testing data,
+there is a strong correlation between CV and testing data. The AUC is higher when stacking is applied and result keep improving when we used more stacking features.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=110mm]{Rplot.png}
+\caption{AUC of 5folds CV result and 30\% testing data using different number of stacking features \label{overflow}}
+\end{figure}
+
+
+
+% \begin{algorithm}
+% \caption{Stacking}
+% \begin{algorithmic}
+% \Procedure{MyProcedure}{}
+% \State $\textit{stringlen} \gets \text{length of }\textit{string}$
+% \State $i \gets \textit{patlen}$
+% \BState \emph{top}:
+% \If {$i > \textit{stringlen}$} \Return false
+% \EndIf
+% \State $j \gets \textit{patlen}$
+% \BState \emph{loop}:
+% \If {$\textit{string}(i) = \textit{path}(j)$}
+% \State $j \gets j-1$.
+% \State $i \gets i-1$.
+% \State \textbf{goto} \emph{loop}.
+% \State \textbf{close};
+% \EndIf
+% \State $i \gets i+\max(\textit{delta}_1(\textit{string}(i)),\textit{delta}_2(j))$.
+% \State \textbf{goto} \emph{top}.
+% \EndProcedure
+% \end{algorithmic}
+% \end{algorithm}
 
 
 %reference

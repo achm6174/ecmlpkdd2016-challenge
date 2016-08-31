@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  28 AUG 2016 21:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  31 AUG 2016 20:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -127,38 +127,56 @@ LaTeX Font Info:    Redeclaring math symbol \Omega on input line 372.
 \c@solution=\count114
 \c@remark=\count115
 \headlineindent=\dimen124
-) (/usr/local/texlive/2015/texmf-dist/tex/latex/algorithms/algorithm.sty
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
- (/usr/local/texlive/2015/texmf-dist/tex/latex/float/float.sty
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count116
-\float@exts=\toks18
-\float@box=\box54
-\@float@everytoks=\toks19
-\@floatcapt=\box55
-) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2013/01/06 v5.00 algorithms environments
+\c@AlgoLine=\count116
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
 )
-\@float@every@algorithm=\toks20
-\c@algorithm=\count117
-) (/usr/local/texlive/2015/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
-Package: algpseudocode 
- (/usr/local/texlive/2015/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
-Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
-
-Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-\c@ALG@line=\count118
-\c@ALG@rem=\count119
-\c@ALG@nested=\count120
-\ALG@tlm=\skip45
-\ALG@thistlm=\skip46
-\c@ALG@Lnr=\count121
-\c@ALG@blocknr=\count122
-\c@ALG@storecount=\count123
-\c@ALG@tmpcounter=\count124
-\ALG@tmplength=\skip47
-)
-Document Style - pseudocode environments for use with the `algorithmicx' style
+********************************************************
+Package `algorithm2e' Release 5.0 -- january 06 2013 --
+- algorithm2e-announce@lirmm.fr mailing list for announcement about releases
+- algorithm2e-discussion@lirmm.fr mailing list for discussion about package
+subscribe by emailing sympa@lirmm.fr with 'subscribe <list> <firstname name>'
+- Author: Christophe Fiorio (cfiorio@um2.fr)
+********************************************************
+\skiptotal=\skip45
+\skiplinenumber=\skip46
+\skiprule=\skip47
+\skiphlne=\skip48
+\skiptext=\skip49
+\skiplength=\skip50
+\algomargin=\skip51
+\skipalgocfslide=\skip52
+\algowidth=\dimen125
+\inoutsize=\dimen126
+\inoutindent=\dimen127
+\interspacetitleruled=\dimen128
+\interspacealgoruled=\dimen129
+\interspacetitleboxruled=\dimen130
+\algocf@inoutbox=\box54
+\algocf@inputbox=\box55
+\AlCapSkip=\skip53
+\AlCapHSkip=\skip54
+\algoskipindent=\skip55
+\algocf@nlbox=\box56
+\algocf@hangingbox=\box57
+\algocf@untilbox=\box58
+\algocf@skipuntil=\skip56
+\algocf@capbox=\box59
+\algoheightruledefault=\skip57
+\algoheightrule=\skip58
+\algotitleheightruledefault=\skip59
+\algotitleheightrule=\skip60
+\c@algocfline=\count117
+\c@algocfproc=\count118
+\c@algocf=\count119
+\algocf@algoframe=\box60
+\algocf@algobox=\box61
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.sty
@@ -167,68 +185,68 @@ Package: babel 2014/09/25 3.9l The Babel package
 Language: english 2012/08/20 v3.3p English support from the babel system
  (/usr/local/texlive/2015/texmf-dist/tex/generic/babel/babel.def
 File: babel.def 2014/09/25 3.9l Babel common definitions
-\babel@savecnt=\count125
-\U@D=\dimen125
+\babel@savecnt=\count120
+\U@D=\dimen131
 )
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip48
+\@mathmargin=\skip61
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01
  (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
-\@emptytoks=\toks21
-\ex@=\dimen126
+\@emptytoks=\toks18
+\ex@=\dimen132
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
-\pmbraise@=\dimen127
+\pmbraise@=\dimen133
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count126
+\inf@bad=\count121
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count127
-\leftroot@=\count128
+\uproot@=\count122
+\leftroot@=\count123
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count129
-\DOTSCASE@=\count130
+\classnum@=\count124
+\DOTSCASE@=\count125
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
-\Mathstrutbox@=\box56
-\strutbox@=\box57
-\big@size=\dimen128
+\Mathstrutbox@=\box62
+\strutbox@=\box63
+\big@size=\dimen134
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 
 
 Package amsmath Warning: Unable to redefine math accent \vec.
 
-\macc@depth=\count131
-\c@MaxMatrixCols=\count132
+\macc@depth=\count126
+\c@MaxMatrixCols=\count127
 \dotsspace@=\muskip10
-\c@parentequation=\count133
-\dspbrk@lvl=\count134
-\tag@help=\toks22
-\row@=\count135
-\column@=\count136
-\maxfields@=\count137
-\andhelp@=\toks23
-\eqnshift@=\dimen129
-\alignsep@=\dimen130
-\tagshift@=\dimen131
-\tagwidth@=\dimen132
-\totwidth@=\dimen133
-\lineht@=\dimen134
-\@envbody=\toks24
-\multlinegap=\skip49
-\multlinetaggap=\skip50
-\mathdisplay@stack=\toks25
+\c@parentequation=\count128
+\dspbrk@lvl=\count129
+\tag@help=\toks19
+\row@=\count130
+\column@=\count131
+\maxfields@=\count132
+\andhelp@=\toks20
+\eqnshift@=\dimen135
+\alignsep@=\dimen136
+\tagshift@=\dimen137
+\tagwidth@=\dimen138
+\totwidth@=\dimen139
+\lineht@=\dimen140
+\@envbody=\toks21
+\multlinegap=\skip62
+\multlinetaggap=\skip63
+\mathdisplay@stack=\toks22
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/cfr-lm/cfr-lm.sty
@@ -236,10 +254,10 @@ Package: cfr-lm 2015/02/01 v1.5 cfr-lm for use with LatinModern v2.004
  (/usr/local/texlive/2015/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
  (/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/xkeyval.tex (/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks26
-\XKV@tempa@toks=\toks27
+\XKV@toks=\toks23
+\XKV@tempa@toks=\toks24
  (/usr/local/texlive/2015/texmf-dist/tex/generic/xkeyval/keyval.tex))
-\XKV@depth=\count138
+\XKV@depth=\count133
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
@@ -327,7 +345,7 @@ Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/nfssext-cfr/nfssext-cfr.sty
 Package: nfssext-cfr 2008/11/08 specially mangled by cfr; based on 2003/03/14 v1.2 Experimental NFSS Extensions
-\c@taken=\count139
+\c@taken=\count134
 LaTeX Info: Redefining \itshape on input line 503.
 LaTeX Info: Redefining \scshape on input line 511.
 LaTeX Info: Redefining \upshape on input line 525.
@@ -382,17 +400,17 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count140
+\Gread@gobject=\count135
 ))
-\Gin@req@height=\dimen135
-\Gin@req@width=\dimen136
+\Gin@req@height=\dimen141
+\Gin@req@width=\dimen142
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/paralist/paralist.sty
 Package: paralist 2013/06/09 v2.4 Extended list environments
-\pltopsep=\skip51
-\plpartopsep=\skip52
-\plitemsep=\skip53
-\plparsep=\skip54
-\pl@lab=\toks28
+\pltopsep=\skip64
+\plpartopsep=\skip65
+\plitemsep=\skip66
+\plparsep=\skip67
+\pl@lab=\toks25
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1enc.def
@@ -400,40 +418,37 @@ File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
- (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/xspace.sty
-Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
-)
-\c@blindtext=\count141
-\c@Blindtext=\count142
-\c@blind@countparstart=\count143
-\blind@countxx=\count144
-\blindtext@numBlindtext=\count145
-\blind@countyy=\count146
-\c@blindlist=\count147
-\c@blindlistlevel=\count148
-\c@blindlist@level=\count149
-\blind@listitem=\count150
-\c@blind@listcount=\count151
-\c@blind@levelcount=\count152
-\blind@mathformula=\count153
-\blind@Mathformula=\count154
-\c@blind@randomcount=\count155
-\c@blind@randommax=\count156
-\c@blind@pangramcount=\count157
-\c@blind@pangrammax=\count158
+\c@blindtext=\count136
+\c@Blindtext=\count137
+\c@blind@countparstart=\count138
+\blind@countxx=\count139
+\blindtext@numBlindtext=\count140
+\blind@countyy=\count141
+\c@blindlist=\count142
+\c@blindlistlevel=\count143
+\c@blindlist@level=\count144
+\blind@listitem=\count145
+\c@blind@listcount=\count146
+\c@blind@levelcount=\count147
+\blind@mathformula=\count148
+\blind@Mathformula=\count149
+\c@blind@randomcount=\count150
+\c@blind@randommax=\count151
+\c@blind@pangramcount=\count152
+\c@blind@pangrammax=\count153
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2015/04/15 v5.1e context-sensitive quotations (JAW)
  (/usr/local/texlive/2015/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2015/05/04 v2.2 e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count159
+\etb@tempcnta=\count154
 )
-\csq@reset=\count160
-\csq@gtype=\count161
-\csq@glevel=\count162
-\csq@qlevel=\count163
-\csq@maxlvl=\count164
-\csq@tshold=\count165
-\csq@ltx@everypar=\toks29
+\csq@reset=\count155
+\csq@gtype=\count156
+\csq@glevel=\count157
+\csq@qlevel=\count158
+\csq@maxlvl=\count159
+\csq@tshold=\count160
+\csq@ltx@everypar=\toks26
  (/usr/local/texlive/2015/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2015/04/15 v5.1e csquotes generic definitions (JAW)
 )
@@ -443,23 +458,23 @@ Package csquotes Info: ... configuration file loaded successfully.
 File: csquotes.cfg 
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
-\MT@toks=\toks30
-\MT@count=\count166
+\MT@toks=\toks27
+\MT@count=\count161
 LaTeX Info: Redefining \textls on input line 766.
-\MT@outer@kern=\dimen137
+\MT@outer@kern=\dimen143
 LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
-\MT@listname@count=\count167
+\MT@listname@count=\count162
  (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 915.
 LaTeX Info: Redefining \lslig on input line 915.
-\MT@outer@space=\skip55
+\MT@outer@space=\skip68
 )
 Package microtype Info: Loading configuration file microtype.cfg.
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/microtype.cfg
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
-)) (/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
+))
+(/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -525,13 +540,13 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen138
-\Hy@linkcounter=\count168
-\Hy@pagecounter=\count169
+\@linkdim=\dimen144
+\Hy@linkcounter=\count163
+\Hy@pagecounter=\count164
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count170
+\Hy@SavedSpaceFactor=\count165
  (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
@@ -545,12 +560,12 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks OFF on input line 4694.
-\c@Hy@tempcnt=\count171
+\c@Hy@tempcnt=\count166
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen139
-\Fld@menulength=\count172
-\Field@Width=\dimen140
-\Fld@charsize=\dimen141
+\XeTeXLinkMargin=\dimen145
+\Fld@menulength=\count167
+\Field@Width=\dimen146
+\Fld@charsize=\dimen147
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -560,41 +575,41 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count173
-\c@Item=\count174
-\c@Hfootnote=\count175
+\Hy@abspage=\count168
+\c@Item=\count169
+\c@Hfootnote=\count170
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count176
-\c@bookmark@seq@number=\count177
+\Fld@listcount=\count171
+\c@bookmark@seq@number=\count172
  (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
 )
-\Hy@SectionHShift=\skip56
+\Hy@SectionHShift=\skip69
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/pdfcomment/pdfcomment.sty
 Package: pdfcomment 2012/09/28 pdfcomment.sty v2.3a - Josef Kleber (C) 2008-2012
-\c@pc@count@i=\count178
-\c@pc@count@ii=\count179
-\c@pc@count@iii=\count180
-\c@pc@count@iv=\count181
-\pc@mathannot@box=\box58
-\pc@dima=\skip57
-\pc@dimb=\skip58
-\pc@Sposx=\skip59
-\pc@Sposy=\skip60
-\pc@Eposx=\skip61
-\pc@Eposy=\skip62
-\pc@column=\skip63
-\pc@box@width=\skip64
-\pc@box@height=\skip65
-\pc@box@depth=\skip66
+\c@pc@count@i=\count173
+\c@pc@count@ii=\count174
+\c@pc@count@iii=\count175
+\c@pc@count@iv=\count176
+\pc@mathannot@box=\box64
+\pc@dima=\skip70
+\pc@dimb=\skip71
+\pc@Sposx=\skip72
+\pc@Sposy=\skip73
+\pc@Eposx=\skip74
+\pc@Eposy=\skip75
+\pc@column=\skip76
+\pc@box@width=\skip77
+\pc@box@height=\skip78
+\pc@box@depth=\skip79
  (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/zref-savepos.sty
 Package: zref-savepos 2012/04/04 v2.24 Module savepos for zref (HO)
  (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/zref-base.sty
@@ -607,22 +622,22 @@ Package zref Info: New property list: savepos on input line 75.
 Package zref Info: New property: posx on input line 76.
 Package zref Info: New property: posy on input line 77.
 )
-\c@zref@unique=\count182
+\c@zref@unique=\count177
  (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count183
-\calc@Bcount=\count184
-\calc@Adimen=\dimen142
-\calc@Bdimen=\dimen143
-\calc@Askip=\skip67
-\calc@Bskip=\skip68
+\calc@Acount=\count178
+\calc@Bcount=\count179
+\calc@Adimen=\dimen148
+\calc@Bdimen=\dimen149
+\calc@Askip=\skip80
+\calc@Bskip=\skip81
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count185
-\calc@Cskip=\skip69
+\calc@Ccount=\count180
+\calc@Cskip=\skip82
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/marginnote/marginnote.sty
 Package: marginnote 2012/03/29 v1.1i non floating margin notes for LaTeX
-\c@mn@abspage=\count186
+\c@mn@abspage=\count181
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/datetime/datetime.sty
 Package: datetime 2015/03/20 v2.60 Date Time Package
  (/usr/local/texlive/2015/texmf-dist/tex/latex/fmtcount/fmtcount.sty
@@ -631,50 +646,50 @@ Package: fmtcount 2015/05/05 v3.01
 Package: fcprefix 2012/09/28
  (/usr/local/texlive/2015/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
 Package: fcnumparser 2012/09/28
-\fc@digit@counter=\count187
+\fc@digit@counter=\count182
 ))
-\c@padzeroesN=\count188
-\fc@tmpcatcode=\count189
+\c@padzeroesN=\count183
+\fc@tmpcatcode=\count184
  (/usr/local/texlive/2015/texmf-dist/tex/latex/fmtcount/fc-english.def
 File: fc-english.def 2013/08/17
 )
-\@DT@modctr=\count190
-\@ordinalctr=\count191
-\@orgargctr=\count192
-\@strctr=\count193
-\@tmpstrctr=\count194
-\@DT@loopN=\count195
-\@DT@X=\count196
+\@DT@modctr=\count185
+\@ordinalctr=\count186
+\@orgargctr=\count187
+\@strctr=\count188
+\@tmpstrctr=\count189
+\@DT@loopN=\count190
+\@DT@X=\count191
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/datetime/datetime-defaults.sty
 Package: datetime-defaults 2013/09/10
 )
-\@day=\count197
-\@month=\count198
-\@year=\count199
-\c@HOUR=\count200
-\c@HOURXII=\count201
-\c@MINUTE=\count202
-\c@TOHOUR=\count203
-\c@TOMINUTE=\count204
-\c@SECOND=\count205
-\currenthour=\count206
-\currentminute=\count207
-\currentsecond=\count208
+\@day=\count192
+\@month=\count193
+\@year=\count194
+\c@HOUR=\count195
+\c@HOURXII=\count196
+\c@MINUTE=\count197
+\c@TOHOUR=\count198
+\c@TOMINUTE=\count199
+\c@SECOND=\count200
+\currenthour=\count201
+\currentminute=\count202
+\currentsecond=\count203
 Package datetime Info: No datetime.cfg file found, using default settings on input line 308.
-\@dtctr=\count209
-\dayofyear=\count210
-\dayofweek=\count211
+\@dtctr=\count204
+\dayofyear=\count205
+\dayofweek=\count206
 LaTeX Info: Redefining \today on input line 736.
-\dt@a=\toks31
-\dt@b=\toks32
+\dt@a=\toks28
+\dt@b=\toks29
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/bezos/soulpos.sty
 Package: soulpos 2012/02/25 v1.0 Fancy underlining
-\ulp@subcnt=\count212
-\ulp@cnt=\count213
+\ulp@subcnt=\count207
+\ulp@cnt=\count208
 \ulp@out=\write3
 \ulp@in=\read1
-\ulwidth=\dimen144
+\ulwidth=\dimen150
 )
 
 Package hyperref Warning: Option `pdftex' has already been used,
@@ -695,7 +710,7 @@ LaTeX Info: Redefining \cpagerefrange on input line 2230.
 LaTeX Info: Redefining \Cpagerefrange on input line 2230.
 LaTeX Info: Redefining \labelcref on input line 2230.
 LaTeX Info: Redefining \labelcpageref on input line 2230.
-Package cleveref Info: `algorithmicx' support loaded on input line 2939.
+Package cleveref Info: `algorithm2e' support loaded on input line 2966.
 Package cleveref Info: `aliascnt' support loaded on input line 3012.
 Package cleveref Info: always capitalise cross-reference names on input line 7465.
 Package cleveref Info: include cross-reference names in hyperlinks on input line 7476.
@@ -751,17 +766,17 @@ LaTeX Font Info:    Try loading font information for T1+clm2 on input line 140.
 File: t1clm2.fd 2010/05/25 Fontinst v1.933 font definitions for T1/clm2.
 ) (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count214
-\scratchdimen=\dimen145
-\scratchbox=\box59
-\nofMPsegments=\count215
-\nofMParguments=\count216
-\everyMPshowfont=\toks33
-\MPscratchCnt=\count217
-\MPscratchDim=\dimen146
-\MPnumerator=\count218
-\makeMPintoPDFobject=\count219
-\everyMPtoPDFconversion=\toks34
+\scratchcounter=\count209
+\scratchdimen=\dimen151
+\scratchbox=\box65
+\nofMPsegments=\count210
+\nofMParguments=\count211
+\everyMPshowfont=\toks30
+\MPscratchCnt=\count212
+\MPscratchDim=\dimen152
+\MPnumerator=\count213
+\makeMPintoPDFobject=\count214
+\everyMPtoPDFconversion=\toks31
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
  (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -786,14 +801,14 @@ Package microtype Info: No adjustment of character kerning.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-\AtBeginShipoutBox=\box60
+\AtBeginShipoutBox=\box66
 Package hyperref Info: Link coloring ON on input line 140.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count220
+\c@section@level=\count215
 )
 LaTeX Info: Redefining \ref on input line 140.
 LaTeX Info: Redefining \pageref on input line 140.
@@ -805,15 +820,15 @@ Package soulpos Info: Loading soulutf8 on input line 140.
 Package: soulutf8 2007/09/09 v1.0 Permit use of UTF-8 characters in soul (HO)
  (/usr/local/texlive/2015/texmf-dist/tex/latex/soul/soul.sty
 Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
-\SOUL@word=\toks35
-\SOUL@lasttoken=\toks36
-\SOUL@cmds=\toks37
-\SOUL@buffer=\toks38
-\SOUL@token=\toks39
-\SOUL@spaceskip=\skip70
-\SOUL@ttwidth=\dimen147
-\SOUL@uldp=\dimen148
-\SOUL@ulht=\dimen149
+\SOUL@word=\toks32
+\SOUL@lasttoken=\toks33
+\SOUL@cmds=\toks34
+\SOUL@buffer=\toks35
+\SOUL@token=\toks36
+\SOUL@spaceskip=\skip83
+\SOUL@ttwidth=\dimen153
+\SOUL@uldp=\dimen154
+\SOUL@ulht=\dimen155
 LaTeX Info: Redefining \textul on input line 799.
 )) (/usr/local/texlive/2015/texmf-dist/tex/generic/pdftex/glyphtounicode.tex)
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -838,33 +853,36 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 \openout3 = `paper.upa'.
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 302.
- [3] [4] (./paper.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 387.
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] <Rplot.png, id=69, 1013.7875pt x 838.13126pt>
+File: Rplot.png Graphic file (type png)
+ <use Rplot.png>
+Package pdftex.def Info: Rplot.png used on input line 366.
+(pdftex.def)             Requested size: 312.9803pt x 258.74374pt.
+ [4 <./Rplot.png>] (./paper.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
  [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 387.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
  (./paper.aux * soulpos - computing points - it may take a few seconds *
 \openout3 = `paper.upb'.
 
  (./paper.upa))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 387.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 387.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 458.
  ) 
 Here is how much of TeX's memory you used:
- 15534 strings out of 493089
- 253636 string characters out of 6134842
- 432719 words of memory out of 5000000
- 18537 multiletter control sequences out of 15000+600000
- 88564 words of font info for 159 fonts, out of 8000000 for 9000
+ 16260 strings out of 493089
+ 263515 string characters out of 6134842
+ 462177 words of memory out of 5000000
+ 19292 multiletter control sequences out of 15000+600000
+ 67192 words of font info for 153 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 42i,9n,55p,1149b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmri9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on paper.pdf (5 pages, 304223 bytes).
+ 42i,9n,55p,1149b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmvtt10.pfb>
+Output written on paper.pdf (5 pages, 290075 bytes).
 PDF statistics:
- 216 PDF objects out of 1000 (max. 8388607)
- 163 compressed objects within 2 object streams
- 61 named destinations out of 1000 (max. 500000)
- 34817 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 182 PDF objects out of 1000 (max. 8388607)
+ 137 compressed objects within 2 object streams
+ 51 named destinations out of 1000 (max. 500000)
+ 20998 words of extra memory for PDF output out of 24883 (max. 10000000)
 
