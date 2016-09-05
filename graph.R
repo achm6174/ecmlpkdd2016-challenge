@@ -69,5 +69,6 @@ ggplot(df_train, aes(x=stack, y=value, colour=group)) +
                                                    linetype = c("solid", "solid"))))+
   theme_minimal(base_size =20) + 
   theme(legend.title = element_blank(),
-        legend.position="bottom")
+        legend.position="bottom") +
+  ylim(0.71, 0.75) 
 

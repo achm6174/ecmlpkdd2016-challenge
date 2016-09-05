@@ -33,6 +33,8 @@ qt=false%
 %extended enumerate, such as \begin{compactenum}
 \usepackage{paralist}
 
+\usepackage{booktabs}
+
 %put figures inside a text
 %\usepackage{picins}
 %use
@@ -159,7 +161,7 @@ pdfstartview=Fit
 %If there are too many authors, use \authorrunning
 %\authorrunning{First Author et al.}
 \institute{
-    Data Scientist, Asia Miles Limited
+    Data Scientist, Cathay Pacific - Asia Miles
     \\ \authormail
 }
 \maketitle
@@ -231,7 +233,7 @@ A greedy approach for an optimal partition is determined at each split by enumer
  and choosing the one such that the loss function $L$ reduction is maximized.
 
 \subsection{Gradient boosted trees}
-A gradient boosted trees $F_m(x)$ is updated as follow for a new tree $f_m$ built at iteration $m$ is
+A gradient boosted trees $F_m(x)$ is updated as follows for a new tree $f_m$ built at iteration $m$ is
 
 \begin{equation}
 F_m(x) =
@@ -265,7 +267,7 @@ For task 2, we merged two different time frames into one dataset:
 For each time frame, the customer id is unique. We predicted the target using extracted Customer Features and Transaction Features.
 
 \subsection{Customer Features}
-All categorical data such as age group, gender, income group are handled as dummy variables. Address latitude and longitude are treated as continuous variables.
+All categorical data such as age group, gender, income group are one-hot-encoded. Address latitude and longitude are treated as continuous variables.
 
 \subsection{Transaction Features}
 The transaction time series is broken down monthly. For each month we calculated frequency of different events (high spending, morning transaction, etc.).
@@ -290,7 +292,7 @@ For a N-folds stacking:
 
  \item Predict $testing$ and $training_1$ using original features from $N-1$ folds ($training_2$, $training_3$, $...$, $training_N$) with first stage models
 
- \item Similarly for $training_2, training_3, ... training_N$, the prediction for testing is the average of $N$ prediction of $testing$
+ \item Similarly for $training_2, training_3, ... training_N$, the prediction for testing is the average of $N$ predictions of $testing$
 
  \item Train the second stage model based on original features and first stage predictions
 \end{enumerate}
@@ -354,18 +356,22 @@ Although 10 folds is a common choice as it provides minmial information loss, we
 \end{enumerate}
 
 In practice, a diversified combination of stacking features from different algorithms (KNN, RandomForest, SVM, NN, etc.)
-will usually outperform stacking using only one algorithm.
-Since we only used xgboost here, we tried to compensate this by building several stacking features using randomized parameters.
+will outperform stacking using only one algorithm.
+Since we only used XGboost here, we tried to compensate this by building several stacking features using randomized parameters to achieve diversification.
 
 
-Fig. 1 shows the AUC perfomance of CV result and 30\% of testing data. Although there's a difference of AUC between local CV and 30\% of testing data,
-there is a strong correlation between CV and testing data. The AUC is higher when stacking is applied and result keep improving when we used more stacking features.
+\textbf{Fig. 1} shows the AUC perfomance of Local 5-folds Cross Validation result and 30\% of testing data using same parameters and seed.
+ Although there's a difference in AUC between local CV and 30\% of testing data,
+ there is a strong correlation on AUC between CV and testing data. The AUC improved when stacking is applied and result keep improving
+ when more randomized stacking features is used.
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=110mm]{Rplot.png}
-\caption{AUC of 5folds CV result and 30\% testing data using different number of stacking features \label{overflow}}
+\includegraphics[width=125mm]{Rplot.png}
+\caption{AUC of CV result and 30\% testing data using different number of stacking features. One standard deviation of the CV score is plotted via error bar. \label{overflow}}
 \end{figure}
+
+
 
 
 
@@ -402,11 +408,33 @@ there is a strong correlation between CV and testing data. The AUC is higher whe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We applied grid search on a subset of parameters. In general, $max\_depth$, $min\_child\_weight$, $gamma$, $lambda$ and $alpha$ are tuned for model complexity,
  $subsample$, $colsample\_bytree$ are tuned to avoid overfitting, $scale\_pos\_weight$ is used to re-balance dataset.
- In order to speed things up we used a high $eta$ (shrinkage) in the first stage and ranked parameter combinations based on cross validation score.
+ In order to speed things up we used a high $eta$ (shrinkage) in the beginning and ranked parameter combinations based on cross validation score.
  For the parameter combinations with top 5\% ranking, we re-trained the model using a lower $eta$ and selected the one with best cross validation score.
 
 For stacking we used random parameters without optimization
  because in practice stacking perform better when the underlying models are diversified.
+
+Below are the parameters we used during training:
+
+\begin{table}[h!]
+  \centering
+  \caption{Parameters Optimization for XGboost}
+  \label{tab:table1}
+  \begin{tabular}{p{3cm}p{3cm}p{4cm}p{2cm}}
+    \toprule
+    Parameters & Description & Range of values & Final Choice \\
+    \midrule
+    $eta$ & Shrinkage in update & [0.005, 0.01, 0.05, 0.1] & 0.005 \\
+    $max\_depth$ & Maximum depth of tree & [3, 4, 5, 6, 7, 8] & 3 \\
+    $colsample\_bytree$ & Subsample ratio of columns when constructing each tree & [0.8, 0.85, 0.9, 0.95, 1] & 0.9 \\
+    $colsample\_bylevel$ & Subsample ratio of columns for each split, in each level & [0.8, 0.85, 0.9, 0.95, 1] & 1 \\
+    $subsample$ & Subsample of data & [0.7, 0.8, 0.9, 1] & 1 \\
+    $lambda$ & L2 regularization & [0.1, 0.5, 1, 5, 10, 20] & 5 \\
+    $alpha$ & L1 regularization & [0, 0.1, 0.5, 1, 5, 10] & 0 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  31 AUG 2016 20:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  5 SEP 2016 20:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -411,6 +411,25 @@ Package: paralist 2013/06/09 v2.4 Extended list environments
 \plitemsep=\skip66
 \plparsep=\skip67
 \pl@lab=\toks25
+) (/usr/local/texlive/2015/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen143
+\lightrulewidth=\dimen144
+\cmidrulewidth=\dimen145
+\belowrulesep=\dimen146
+\belowbottomsep=\dimen147
+\aboverulesep=\dimen148
+\abovetopsep=\dimen149
+\cmidrulesep=\dimen150
+\cmidrulekern=\dimen151
+\defaultaddspace=\dimen152
+\@cmidla=\count136
+\@cmidlb=\count137
+\@aboverulesep=\dimen153
+\@belowrulesep=\dimen154
+\@thisruleclass=\count138
+\@lastruleclass=\count139
+\@thisrulewidth=\dimen155
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/t1enc.def
@@ -418,36 +437,36 @@ File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
-\c@blindtext=\count136
-\c@Blindtext=\count137
-\c@blind@countparstart=\count138
-\blind@countxx=\count139
-\blindtext@numBlindtext=\count140
-\blind@countyy=\count141
-\c@blindlist=\count142
-\c@blindlistlevel=\count143
-\c@blindlist@level=\count144
-\blind@listitem=\count145
-\c@blind@listcount=\count146
-\c@blind@levelcount=\count147
-\blind@mathformula=\count148
-\blind@Mathformula=\count149
-\c@blind@randomcount=\count150
-\c@blind@randommax=\count151
-\c@blind@pangramcount=\count152
-\c@blind@pangrammax=\count153
+\c@blindtext=\count140
+\c@Blindtext=\count141
+\c@blind@countparstart=\count142
+\blind@countxx=\count143
+\blindtext@numBlindtext=\count144
+\blind@countyy=\count145
+\c@blindlist=\count146
+\c@blindlistlevel=\count147
+\c@blindlist@level=\count148
+\blind@listitem=\count149
+\c@blind@listcount=\count150
+\c@blind@levelcount=\count151
+\blind@mathformula=\count152
+\blind@Mathformula=\count153
+\c@blind@randomcount=\count154
+\c@blind@randommax=\count155
+\c@blind@pangramcount=\count156
+\c@blind@pangrammax=\count157
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/csquotes/csquotes.sty
 Package: csquotes 2015/04/15 v5.1e context-sensitive quotations (JAW)
  (/usr/local/texlive/2015/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2015/05/04 v2.2 e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count154
+\etb@tempcnta=\count158
 )
-\csq@reset=\count155
-\csq@gtype=\count156
-\csq@glevel=\count157
-\csq@qlevel=\count158
-\csq@maxlvl=\count159
-\csq@tshold=\count160
+\csq@reset=\count159
+\csq@gtype=\count160
+\csq@glevel=\count161
+\csq@qlevel=\count162
+\csq@maxlvl=\count163
+\csq@tshold=\count164
 \csq@ltx@everypar=\toks26
  (/usr/local/texlive/2015/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2015/04/15 v5.1e csquotes generic definitions (JAW)
@@ -459,11 +478,11 @@ File: csquotes.cfg
 )) (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2013/05/23 v2.5a Micro-typographical refinements (RS)
 \MT@toks=\toks27
-\MT@count=\count161
+\MT@count=\count165
 LaTeX Info: Redefining \textls on input line 766.
-\MT@outer@kern=\dimen143
+\MT@outer@kern=\dimen156
 LaTeX Info: Redefining \textmicrotypecontext on input line 1285.
-\MT@listname@count=\count162
+\MT@listname@count=\count166
  (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/microtype-pdftex.def
 File: microtype-pdftex.def 2013/05/23 v2.5a Definitions specific to pdftex (RS)
 LaTeX Info: Redefining \lsstyle on input line 915.
@@ -471,10 +490,10 @@ LaTeX Info: Redefining \lslig on input line 915.
 \MT@outer@space=\skip68
 )
 Package microtype Info: Loading configuration file microtype.cfg.
- (/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/microtype.cfg
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2013/05/23 v2.5a microtype main configuration file (RS)
-))
-(/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
+)) (/usr/local/texlive/2015/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -540,13 +559,13 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
-\@linkdim=\dimen144
-\Hy@linkcounter=\count163
-\Hy@pagecounter=\count164
+\@linkdim=\dimen157
+\Hy@linkcounter=\count167
+\Hy@pagecounter=\count168
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count165
+\Hy@SavedSpaceFactor=\count169
  (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
@@ -560,12 +579,12 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks OFF on input line 4694.
-\c@Hy@tempcnt=\count166
+\c@Hy@tempcnt=\count170
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen145
-\Fld@menulength=\count167
-\Field@Width=\dimen146
-\Fld@charsize=\dimen147
+\XeTeXLinkMargin=\dimen158
+\Fld@menulength=\count171
+\Field@Width=\dimen159
+\Fld@charsize=\dimen160
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -575,17 +594,17 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count168
-\c@Item=\count169
-\c@Hfootnote=\count170
+\Hy@abspage=\count172
+\c@Item=\count173
+\c@Hfootnote=\count174
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count171
-\c@bookmark@seq@number=\count172
+\Fld@listcount=\count175
+\c@bookmark@seq@number=\count176
  (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
@@ -595,10 +614,10 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
 Package: hypcap 2011/02/16 v1.11 Adjusting the anchors of captions (HO)
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/pdfcomment/pdfcomment.sty
 Package: pdfcomment 2012/09/28 pdfcomment.sty v2.3a - Josef Kleber (C) 2008-2012
-\c@pc@count@i=\count173
-\c@pc@count@ii=\count174
-\c@pc@count@iii=\count175
-\c@pc@count@iv=\count176
+\c@pc@count@i=\count177
+\c@pc@count@ii=\count178
+\c@pc@count@iii=\count179
+\c@pc@count@iv=\count180
 \pc@mathannot@box=\box64
 \pc@dima=\skip70
 \pc@dimb=\skip71
@@ -622,22 +641,22 @@ Package zref Info: New property list: savepos on input line 75.
 Package zref Info: New property: posx on input line 76.
 Package zref Info: New property: posy on input line 77.
 )
-\c@zref@unique=\count177
+\c@zref@unique=\count181
  (/usr/local/texlive/2015/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count178
-\calc@Bcount=\count179
-\calc@Adimen=\dimen148
-\calc@Bdimen=\dimen149
+\calc@Acount=\count182
+\calc@Bcount=\count183
+\calc@Adimen=\dimen161
+\calc@Bdimen=\dimen162
 \calc@Askip=\skip80
 \calc@Bskip=\skip81
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count180
+\calc@Ccount=\count184
 \calc@Cskip=\skip82
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/marginnote/marginnote.sty
 Package: marginnote 2012/03/29 v1.1i non floating margin notes for LaTeX
-\c@mn@abspage=\count181
+\c@mn@abspage=\count185
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/datetime/datetime.sty
 Package: datetime 2015/03/20 v2.60 Date Time Package
  (/usr/local/texlive/2015/texmf-dist/tex/latex/fmtcount/fmtcount.sty
@@ -646,50 +665,50 @@ Package: fmtcount 2015/05/05 v3.01
 Package: fcprefix 2012/09/28
  (/usr/local/texlive/2015/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
 Package: fcnumparser 2012/09/28
-\fc@digit@counter=\count182
+\fc@digit@counter=\count186
 ))
-\c@padzeroesN=\count183
-\fc@tmpcatcode=\count184
+\c@padzeroesN=\count187
+\fc@tmpcatcode=\count188
  (/usr/local/texlive/2015/texmf-dist/tex/latex/fmtcount/fc-english.def
 File: fc-english.def 2013/08/17
 )
-\@DT@modctr=\count185
-\@ordinalctr=\count186
-\@orgargctr=\count187
-\@strctr=\count188
-\@tmpstrctr=\count189
-\@DT@loopN=\count190
-\@DT@X=\count191
+\@DT@modctr=\count189
+\@ordinalctr=\count190
+\@orgargctr=\count191
+\@strctr=\count192
+\@tmpstrctr=\count193
+\@DT@loopN=\count194
+\@DT@X=\count195
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/datetime/datetime-defaults.sty
 Package: datetime-defaults 2013/09/10
 )
-\@day=\count192
-\@month=\count193
-\@year=\count194
-\c@HOUR=\count195
-\c@HOURXII=\count196
-\c@MINUTE=\count197
-\c@TOHOUR=\count198
-\c@TOMINUTE=\count199
-\c@SECOND=\count200
-\currenthour=\count201
-\currentminute=\count202
-\currentsecond=\count203
+\@day=\count196
+\@month=\count197
+\@year=\count198
+\c@HOUR=\count199
+\c@HOURXII=\count200
+\c@MINUTE=\count201
+\c@TOHOUR=\count202
+\c@TOMINUTE=\count203
+\c@SECOND=\count204
+\currenthour=\count205
+\currentminute=\count206
+\currentsecond=\count207
 Package datetime Info: No datetime.cfg file found, using default settings on input line 308.
-\@dtctr=\count204
-\dayofyear=\count205
-\dayofweek=\count206
+\@dtctr=\count208
+\dayofyear=\count209
+\dayofweek=\count210
 LaTeX Info: Redefining \today on input line 736.
 \dt@a=\toks28
 \dt@b=\toks29
 )
 (/usr/local/texlive/2015/texmf-dist/tex/latex/bezos/soulpos.sty
 Package: soulpos 2012/02/25 v1.0 Fancy underlining
-\ulp@subcnt=\count207
-\ulp@cnt=\count208
+\ulp@subcnt=\count211
+\ulp@cnt=\count212
 \ulp@out=\write3
 \ulp@in=\read1
-\ulwidth=\dimen150
+\ulwidth=\dimen163
 )
 
 Package hyperref Warning: Option `pdftex' has already been used,
@@ -725,57 +744,57 @@ Package csquotes Info: Redefining alias 'default' -> 'english'.
  (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/lmm/m/it on input line 140.
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 140.
+LaTeX Font Info:    Checking defaults for OML/lmm/m/it on input line 142.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 142.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OT1/lmr/m/n on input line 140.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 140.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OT1/lmr/m/n on input line 142.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 142.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OMS/lmsy/m/n on input line 140.
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 140.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMS/lmsy/m/n on input line 142.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 142.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for OMX/lmex/m/n on input line 140.
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 140.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for OMX/lmex/m/n on input line 142.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 142.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 140.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 140.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 142.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 140.
-LaTeX Font Info:    ... okay on input line 140.
-LaTeX Font Info:    Try loading font information for T1+clm2 on input line 140.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
+LaTeX Font Info:    ... okay on input line 142.
+LaTeX Font Info:    Try loading font information for T1+clm2 on input line 142.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/cfr-lm/t1clm2.fd
 File: t1clm2.fd 2010/05/25 Fontinst v1.933 font definitions for T1/clm2.
 ) (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count209
-\scratchdimen=\dimen151
+\scratchcounter=\count213
+\scratchdimen=\dimen164
 \scratchbox=\box65
-\nofMPsegments=\count210
-\nofMParguments=\count211
+\nofMPsegments=\count214
+\nofMParguments=\count215
 \everyMPshowfont=\toks30
-\MPscratchCnt=\count212
-\MPscratchDim=\dimen152
-\MPnumerator=\count213
-\makeMPintoPDFobject=\count214
+\MPscratchCnt=\count216
+\MPscratchDim=\dimen165
+\MPnumerator=\count217
+\makeMPintoPDFobject=\count218
 \everyMPtoPDFconversion=\toks31
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -788,7 +807,7 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Info: Redefining \microtypecontext on input line 140.
+LaTeX Info: Redefining \microtypecontext on input line 142.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -802,20 +821,20 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
 \AtBeginShipoutBox=\box66
-Package hyperref Info: Link coloring ON on input line 140.
+Package hyperref Info: Link coloring ON on input line 142.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count215
+\c@section@level=\count219
 )
-LaTeX Info: Redefining \ref on input line 140.
-LaTeX Info: Redefining \pageref on input line 140.
-LaTeX Info: Redefining \nameref on input line 140.
+LaTeX Info: Redefining \ref on input line 142.
+LaTeX Info: Redefining \pageref on input line 142.
+LaTeX Info: Redefining \nameref on input line 142.
 Package marginnote Info: \pdfoutput not 0 and \pdflastxpos available.
 (marginnote)             Extended position detection mode activated.
-Package soulpos Info: Loading soulutf8 on input line 140.
+Package soulpos Info: Loading soulutf8 on input line 142.
  (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/soulutf8.sty
 Package: soulutf8 2007/09/09 v1.0 Permit use of UTF-8 characters in soul (HO)
  (/usr/local/texlive/2015/texmf-dist/tex/latex/soul/soul.sty
@@ -826,18 +845,18 @@ Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
 \SOUL@buffer=\toks35
 \SOUL@token=\toks36
 \SOUL@spaceskip=\skip83
-\SOUL@ttwidth=\dimen153
-\SOUL@uldp=\dimen154
-\SOUL@ulht=\dimen155
+\SOUL@ttwidth=\dimen166
+\SOUL@uldp=\dimen167
+\SOUL@ulht=\dimen168
 LaTeX Info: Redefining \textul on input line 799.
 )) (/usr/local/texlive/2015/texmf-dist/tex/generic/pdftex/glyphtounicode.tex)
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 166.
+(Font)              <10> on input line 168.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 166.
+(Font)              <7> on input line 168.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 166.
-LaTeX Font Info:    Try loading font information for T1+clm2v on input line 166.
+(Font)              <5> on input line 168.
+LaTeX Font Info:    Try loading font information for T1+clm2v on input line 168.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/cfr-lm/t1clm2v.fd
 File: t1clm2v.fd 2010/05/25 Fontinst v1.933 font definitions for T1/clm2v.
 )
@@ -846,43 +865,68 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 166.
+(Font)              <9> on input line 168.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 166.
+(Font)              <6> on input line 168.
  [1
 
 \openout3 = `paper.upa'.
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] <Rplot.png, id=69, 1013.7875pt x 838.13126pt>
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] <Rplot.png, id=70, 983.675pt x 653.44125pt>
 File: Rplot.png Graphic file (type png)
  <use Rplot.png>
-Package pdftex.def Info: Rplot.png used on input line 366.
-(pdftex.def)             Requested size: 312.9803pt x 258.74374pt.
- [4 <./Rplot.png>] (./paper.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 458.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 458.
+Package pdftex.def Info: Rplot.png used on input line 370.
+(pdftex.def)             Requested size: 355.65944pt x 236.25568pt.
+
+Overfull \hbox (8.5359pt too wide) in paragraph at lines 370--371
+ [][] 
+ []
+
+[4 <./Rplot.png>]
+Underfull \hbox (badness 1817) in paragraph at lines 429--429
+[]\T1/clm2/m/n/9 (+20) Subsample ra-tio of
+ []
+
+
+Underfull \hbox (badness 1990) in paragraph at lines 429--429
+\T1/clm2/m/n/9 (+20) columns when con-
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 430--430
+[]\T1/clm2/m/n/9 (+20) Subsample ra-tio of
+ []
+
+
+Overfull \hbox (5.50946pt too wide) in paragraph at lines 423--436
+ [][] 
+ []
+
+[5] (./paper.bbl)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 486.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 486.
  (./paper.aux * soulpos - computing points - it may take a few seconds *
 \openout3 = `paper.upb'.
 
  (./paper.upa))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 458.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 458.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 486.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 486.
  ) 
 Here is how much of TeX's memory you used:
- 16260 strings out of 493089
- 263515 string characters out of 6134842
- 462177 words of memory out of 5000000
- 19292 multiletter control sequences out of 15000+600000
- 67192 words of font info for 153 fonts, out of 8000000 for 9000
+ 16321 strings out of 493089
+ 264347 string characters out of 6134842
+ 464926 words of memory out of 5000000
+ 19354 multiletter control sequences out of 15000+600000
+ 70140 words of font info for 148 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
- 42i,9n,55p,1149b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2015/texmf-
-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on paper.pdf (5 pages, 290075 bytes).
+ 42i,14n,55p,1149b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmvtt10.pfb>
+Output written on paper.pdf (6 pages, 298227 bytes).
 PDF statistics:
- 182 PDF objects out of 1000 (max. 8388607)
- 137 compressed objects within 2 object streams
- 51 named destinations out of 1000 (max. 500000)
- 20998 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 192 PDF objects out of 1000 (max. 8388607)
+ 144 compressed objects within 2 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 21510 words of extra memory for PDF output out of 24883 (max. 10000000)
 
