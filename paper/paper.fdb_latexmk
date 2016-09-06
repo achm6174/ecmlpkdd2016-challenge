@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex paper"] 1473165229 "paper.aux" "paper.bbl" "paper" 1473166130
+["bibtex paper"] 1473168206 "paper.aux" "paper.bbl" "paper" 1473168835
   "./splncs03.bst" 1466689035 33098 4ef5df5462ae7c3cec476a39dec1b7bb ""
-  "paper.aux" 1473166035 3202 3471becda11d6fc4d6f28943f79e8e93 ""
+  "paper.aux" 1473168835 3202 3471becda11d6fc4d6f28943f79e8e93 ""
   "paper.bcf" 0 -1 0 ""
   "paper.bib" 1467380479 252 d4fef180875266da74f85102b24aa3fc ""
   (generated)
   "paper.blg"
   "paper.bbl"
-["pdflatex"] 1473166034 "paper.tex" "paper.pdf" "paper" 1473166130
+["pdflatex"] 1473168834 "paper.tex" "paper.pdf" "paper" 1473168835
   "./Rplot.png" 1473165326 55245 e5e77a5ff96c8c2ee00f0d4efa11b36e ""
   "/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc" 1279324100 3921 eb65b2d07511e6dc37706a00bb293a76 ""
   "/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc" 1278888116 3104 554211af71f34bcdc3ed0d44a5fba87f ""
@@ -176,13 +176,13 @@
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
   "Rplot.png" 1473165326 55245 e5e77a5ff96c8c2ee00f0d4efa11b36e ""
   "llncs.cls" 1466689032 42910 21b15ca036d6c144fc14b6b7fb201290 ""
-  "paper.aux" 1473166035 3202 3471becda11d6fc4d6f28943f79e8e93 ""
-  "paper.bbl" 1473165229 284 e402fdee63db3ffdc35ef8d743ba9ce5 "bibtex paper"
-  "paper.tex" 1473166099 19272 c74969b5816b5b61f47ddf5d3c3c204b ""
-  "paper.upb" 1473166035 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "paper.aux" 1473168835 3202 3471becda11d6fc4d6f28943f79e8e93 ""
+  "paper.bbl" 1473168206 284 e402fdee63db3ffdc35ef8d743ba9ce5 "bibtex paper"
+  "paper.tex" 1473168822 19572 4999ef83750a49255afd15353515cbdf ""
+  "paper.upb" 1473168835 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "paper.pdf"
   "paper.aux"
-  "paper.log"
-  "paper.upa"
   "paper.upb"
+  "paper.upa"
+  "paper.log"

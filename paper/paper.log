@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  6 SEP 2016 20:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  6 SEP 2016 21:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -875,50 +875,75 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 {/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] <Rplot.png, id=69, 950.55125pt x 653.44125pt>
 File: Rplot.png Graphic file (type png)
  <use Rplot.png>
-Package pdftex.def Info: Rplot.png used on input line 369.
-(pdftex.def)             Requested size: 341.43306pt x 234.71022pt.
+Package pdftex.def Info: Rplot.png used on input line 370.
+(pdftex.def)             Requested size: 327.20668pt x 224.92897pt.
  [4 <./Rplot.png>]
-Underfull \hbox (badness 1817) in paragraph at lines 428--428
-[]\T1/clm2/m/n/9 (+20) Subsample ra-tio of
- []
-
-
-Underfull \hbox (badness 1990) in paragraph at lines 428--428
-\T1/clm2/m/n/9 (+20) columns when con-
- []
-
-
 Underfull \hbox (badness 1817) in paragraph at lines 429--429
 []\T1/clm2/m/n/9 (+20) Subsample ra-tio of
  []
 
 
-Overfull \hbox (5.50946pt too wide) in paragraph at lines 422--435
+Underfull \hbox (badness 1990) in paragraph at lines 429--429
+\T1/clm2/m/n/9 (+20) columns when con-
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 430--430
+[]\T1/clm2/m/n/9 (+20) Subsample ra-tio of
+ []
+
+
+Underfull \hbox (badness 1817) in paragraph at lines 431--431
+[]\T1/clm2/m/n/9 (+20) Subsample ra-tio of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--433
+[]\T1/clm2/m/n/9 (+20) minimum sum of
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--433
+\T1/clm2/m/n/9 (+20) in-stance weight
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 433--433
+\T1/clm2/m/n/9 (+20) (Hes-sian) re-quired
+ []
+
+
+Underfull \hbox (badness 2261) in paragraph at lines 433--433
+\T1/clm2/m/n/9 (+20) to make a fur-ther
+ []
+
+
+Overfull \hbox (5.50946pt too wide) in paragraph at lines 423--438
  [][] 
  []
 
 [5] (./paper.bbl)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 485.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 488.
  [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 485.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 488.
  (./paper.aux * soulpos - computing points - it may take a few seconds *
 \openout3 = `paper.upb'.
 
  (./paper.upa))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 485.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 485.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 488.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 488.
  ) 
 Here is how much of TeX's memory you used:
  16325 strings out of 493089
- 264394 string characters out of 6134842
+ 264390 string characters out of 6134842
  464926 words of memory out of 5000000
  19354 multiletter control sequences out of 15000+600000
- 70252 words of font info for 151 fonts, out of 8000000 for 9000
+ 70256 words of font info for 151 fonts, out of 8000000 for 9000
  1144 hyphenation exceptions out of 8191
  42i,14n,55p,1149b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on paper.pdf (6 pages, 295477 bytes).
+Output written on paper.pdf (6 pages, 296593 bytes).
 PDF statistics:
  192 PDF objects out of 1000 (max. 8388607)
  144 compressed objects within 2 object streams
