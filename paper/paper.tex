@@ -339,16 +339,16 @@ For a N-folds stacking:
 
 
 
-We only applied stacking on task 2.
-We tried two stacking method seperately
+We only applied stacking on task 2 as task 1 is too compute-intensive.
+We tried two stacking method seperately:
 \begin{enumerate}
  \item 2-folds stacking split by two different time frame
 
  \item 10-folds stacking after merging two time frame
 \end{enumerate}
 
-Since stacking index must be fixed in order to avoid leakage, we can only choose either 2-folds or 10-folds.
-Although 10 folds is a common choice as it provides minmial information loss, we finally choose two folds for two reasons:
+Since stacking index must be fixed in order to avoid leakage, we can only use either 2-folds or 10-folds stacking.
+Although 10-folds is a common choice as it provides minimal information loss, we finally decided using 2-folds for two reasons:
 \begin{enumerate}
  \item The training data is a combination data in two periods. It provides out-of-period stacking feature split by time, which is useful to avoid overfitting.
 
@@ -360,14 +360,13 @@ will outperform stacking using only one algorithm.
 Since we only used XGboost here, we tried to compensate this by building several stacking features using randomized parameters to achieve diversification.
 
 
-\textbf{Fig. 1} shows the AUC perfomance of Local 5-folds Cross Validation result and 30\% of testing data using same parameters and seed.
- Although there's a difference in AUC between local CV and 30\% of testing data,
- there is a strong correlation on AUC between CV and testing data. The AUC improved when stacking is applied and result keep improving
- when more randomized stacking features is used.
+\textbf{Fig. 1} shows the AUC perfomance of Local 5-folds Cross Validation and 30\% of testing data using same parameters and seed.
+ There is a strong correlation in AUC between Cross Validation and 30\% of testing data.
+ The AUC improved once stacking is applied. We included more randomized stacking features until there is no improvement in AUC.
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=125mm]{Rplot.png}
+\includegraphics[width=120mm]{Rplot.png}
 \caption{AUC of CV result and 30\% testing data using different number of stacking features. One standard deviation of the CV score is plotted via error bar. \label{overflow}}
 \end{figure}
 
@@ -408,10 +407,10 @@ Since we only used XGboost here, we tried to compensate this by building several
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 We applied grid search on a subset of parameters. In general, $max\_depth$, $min\_child\_weight$, $gamma$, $lambda$ and $alpha$ are tuned for model complexity,
  $subsample$, $colsample\_bytree$ are tuned to avoid overfitting, $scale\_pos\_weight$ is used to re-balance dataset.
- In order to speed things up we used a high $eta$ (shrinkage) in the beginning and ranked parameter combinations based on cross validation score.
- For the parameter combinations with top 5\% ranking, we re-trained the model using a lower $eta$ and selected the one with best cross validation score.
+ In order to speed things up we used a high $eta$ (shrinkage) in the beginning and ranked parameter combinations based on Cross Validation.
+ For the parameter combinations with top 5\% ranking, we re-trained the model using a lower $eta$ and selected the one with best Cross Validation.
 
-For stacking we used random parameters without optimization
+For stacking features we used random parameters without optimization
  because in practice stacking perform better when the underlying models are diversified.
 
 Below are the parameters we used during training:
@@ -424,8 +423,8 @@ Below are the parameters we used during training:
     \toprule
     Parameters & Description & Range of values & Final Choice \\
     \midrule
-    $eta$ & Shrinkage in update & [0.005, 0.01, 0.05, 0.1] & 0.005 \\
-    $max\_depth$ & Maximum depth of tree & [3, 4, 5, 6, 7, 8] & 3 \\
+    $eta$ & Shrinkage & [0.005, 0.01, 0.05, 0.1] & 0.005 \\
+    $max\_depth$ & Maximum depth of trees & [3, 4, 5, 6, 7, 8] & 3 \\
     $colsample\_bytree$ & Subsample ratio of columns when constructing each tree & [0.8, 0.85, 0.9, 0.95, 1] & 0.9 \\
     $colsample\_bylevel$ & Subsample ratio of columns for each split, in each level & [0.8, 0.85, 0.9, 0.95, 1] & 1 \\
     $subsample$ & Subsample of data & [0.7, 0.8, 0.9, 1] & 1 \\

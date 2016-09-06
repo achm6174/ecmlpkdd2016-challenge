@@ -51,15 +51,15 @@ df_train = data.frame(
   value = c(publicboard,CV),
   var = c(rep(0,12), CV_Var),
   stack = c(num_of_stack_feats,num_of_stack_feats),
-  group = c(rep("30% testing data", 12), rep("cv", 12))
+  group = c(rep("30% testing data", 12), rep("CV", 12))
 )
 
 
 ###########
 test_data
-
+theme_set(theme_gray(base_size = 15))
 ggplot(df_train, aes(x=stack, y=value, colour=group)) + 
-  geom_errorbar(aes(ymin=value+var, ymax=value-var), width=0.5) +
+  geom_errorbar(aes(ymin=value+var, ymax=value-var, colour=group), width=0.2) +
   geom_line() +
   labs(list(
             x = "Number of Randomized Stacking Features", y = "AUC")) +
@@ -67,7 +67,7 @@ ggplot(df_train, aes(x=stack, y=value, colour=group)) +
   guides(shape = FALSE,
          colour = guide_legend(override.aes = list(shape = c(16, 17),
                                                    linetype = c("solid", "solid"))))+
-  theme_minimal(base_size =20) + 
+  #theme_minimal(base_size =20) + 
   theme(legend.title = element_blank(),
         legend.position="bottom") +
   ylim(0.71, 0.75) 
