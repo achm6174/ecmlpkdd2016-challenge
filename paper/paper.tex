@@ -350,20 +350,21 @@ We tried two stacking method seperately:
 Since stacking index must be fixed in order to avoid leakage, we can only use either 2-folds or 10-folds stacking.
 Although 10-folds is a common choice as it provides minimal information loss, we finally decided using 2-folds for two reasons:
 \begin{enumerate}
- \item The training data is a combination data in two periods. If folds are split by time,
-  stacking feature is built based on information from different time period, which is useful to avoid overfitting.
+ \item The training data is a combination data in two different time periods. If folds are split by time,
+  stacking feature is built based on information from another time period, which is useful to avoid overfitting.
 
- \item Both stacking provides improvement on local CV, but 10 folds show discrepancy between CV and 30\% of testing data.
+ \item Both 2-folds and 10-folds stacking gives improvement on AUC, but 10-folds stacking shows
+  discrepancy in improvement between Cross Validation and 30\% of testing data.
 \end{enumerate}
 
 In practice, a diversified combination of stacking features from different algorithms (KNN, RandomForest, SVM, NN, etc.)
-will outperform stacking using only one algorithm.
+will outperform stacking using only one single algorithm.
 Since we only used XGboost here, we compensated this by building several stacking features using randomized parameters to achieve diversification.
 
 
-\textbf{Fig. 1} shows the AUC perfomance of Local 5-folds Cross Validation and 30\% of testing data using same parameters and seed.
+\textbf{Fig. 1} shows the AUC perfomance of 5-folds Cross Validation and 30\% of testing data using same parameters and seed.
  There is a strong correlation in AUC between Cross Validation and 30\% of testing data.
- The AUC improved once stacking is applied. We included more randomized stacking features until there is no improvement in AUC.
+ AUC is improved once stacking is applied and we included more randomized stacking feature until there is no improvement in AUC.
 
 \begin{figure}[ht!]
 \centering
