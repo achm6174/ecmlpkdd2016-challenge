@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex paper"] 1473232216 "paper.aux" "paper.bbl" "paper" 1473238687
+["bibtex paper"] 1473240892 "paper.aux" "paper.bbl" "paper" 1473240893
   "./splncs03.bst" 1466689035 33098 4ef5df5462ae7c3cec476a39dec1b7bb ""
-  "paper.aux" 1473238687 3202 3471becda11d6fc4d6f28943f79e8e93 ""
+  "paper.aux" 1473240893 3222 07629fbd0966f2182fd87b10348272c4 ""
   "paper.bcf" 0 -1 0 ""
   "paper.bib" 1467380479 252 d4fef180875266da74f85102b24aa3fc ""
   (generated)
-  "paper.bbl"
   "paper.blg"
-["pdflatex"] 1473238686 "paper.tex" "paper.pdf" "paper" 1473238687
-  "./Rplot.png" 1473165326 55245 e5e77a5ff96c8c2ee00f0d4efa11b36e ""
+  "paper.bbl"
+["pdflatex"] 1473240892 "paper.tex" "paper.pdf" "paper" 1473240893
+  "./Rplot.png" 1473240667 55308 c5491dfb759299a2b5274e5b08aa20bf ""
   "/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc" 1279324100 3921 eb65b2d07511e6dc37706a00bb293a76 ""
   "/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc" 1278888116 3104 554211af71f34bcdc3ed0d44a5fba87f ""
   "/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
@@ -174,15 +174,15 @@
   "/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1432479641 1764542 91654ba72bdb667e84ea24f076ae16d8 ""
   "/usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt" 1460338806 3849859 3ca15bd7865bb01add9ad05bdc49fe02 ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
-  "Rplot.png" 1473165326 55245 e5e77a5ff96c8c2ee00f0d4efa11b36e ""
+  "Rplot.png" 1473240667 55308 c5491dfb759299a2b5274e5b08aa20bf ""
   "llncs.cls" 1466689032 42910 21b15ca036d6c144fc14b6b7fb201290 ""
-  "paper.aux" 1473238687 3202 3471becda11d6fc4d6f28943f79e8e93 ""
-  "paper.bbl" 1473232217 284 e402fdee63db3ffdc35ef8d743ba9ce5 "bibtex paper"
-  "paper.tex" 1473238685 19644 8d31c2d3f3fe66146795a9e1be47877a ""
-  "paper.upb" 1473238687 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "paper.aux" 1473240893 3222 07629fbd0966f2182fd87b10348272c4 ""
+  "paper.bbl" 1473240892 284 e402fdee63db3ffdc35ef8d743ba9ce5 "bibtex paper"
+  "paper.tex" 1473240880 19667 e8ffc8f9861de5efbc243282a89cd510 ""
+  "paper.upb" 1473240893 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
-  "paper.aux"
   "paper.pdf"
-  "paper.log"
-  "paper.upa"
   "paper.upb"
+  "paper.upa"
+  "paper.aux"
+  "paper.log"

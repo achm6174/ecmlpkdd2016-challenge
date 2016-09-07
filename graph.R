@@ -51,7 +51,7 @@ df_train = data.frame(
   value = c(publicboard,CV),
   var = c(rep(0,12), CV_Var),
   stack = c(num_of_stack_feats,num_of_stack_feats),
-  group = c(rep("30% testing data", 12), rep("CV", 12))
+  group = c(rep("30% testing data", 12), rep("5-folds CV", 12))
 )
 
 

@@ -353,7 +353,7 @@ Although 10-folds is a common choice as it provides minimal information loss, we
  \item The training data is a combination data in two different time periods. If folds are split by time,
   stacking feature is built based on information from another time period, which is useful to avoid overfitting.
 
- \item Both 2-folds and 10-folds stacking gives improvement on AUC, but 10-folds stacking shows
+ \item Both 2-folds and 10-folds stacking gives improvement on $AUC$, but 10-folds stacking shows
   discrepancy in improvement between Cross Validation and 30\% of testing data.
 \end{enumerate}
 
@@ -362,14 +362,14 @@ will outperform stacking using only one single algorithm.
 Since we only used XGboost here, we compensated this by building several stacking features using randomized parameters to achieve diversification.
 
 
-\textbf{Fig. 1} shows the AUC performance of 5-folds Cross Validation and 30\% of testing data using same parameters and seed.
- There is a strong correlation in AUC between Cross Validation and 30\% of testing data.
- AUC is improved once stacking is applied and we included more randomized stacking features until there is no improvement in AUC.
+\textbf{Fig. 1} shows the $AUC$ of 5-folds Cross Validation using same parameters and seed and $AUC$ of prediction on 30\% of testing data .
+ There is a strong correlation in $AUC$ between Cross Validation and 30\% of testing data.
+ $AUC$ is improved once stacking is applied and we included more randomized stacking features until there is no improvement.
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=110mm]{Rplot.png}
-\caption{AUC of CV result and 30\% testing data using different number of stacking features. One standard deviation of the CV score is plotted via error bar. \label{overflow}}
+\includegraphics[width=100mm]{Rplot.png}
+\caption{$AUC$ of 5-folds CV result and 30\% testing data using different number of stacking features. The error bar represents one standard deviation of the CV score. \label{overflow}}
 \end{figure}
 
 
