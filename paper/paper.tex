@@ -443,7 +443,7 @@ For stacking features we used random parameters without optimization
 \section{Performance and Conclusion}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 For task 1, we predicted the probability of visiting a particular branch for each customer using $Logarithmic Loss$ as the local evaluation metric.
- We selected top 5 branches with highest probability score. The $cosine@5$ on 30\% of the testing data is $\sim0.65$.
+ We selected top 5 branches with highest probability score. The best $cosine@5$ on 30\% of the testing data is $\sim0.65$.
 
 The most important features are:
 
@@ -458,7 +458,7 @@ There is still a margin of improvement for task 1, since we transformed the task
  We discarded too much information in training as we treated customer visiting a branch multiple times same as a single time.
 
 For task 2, we predicted the probability of acquisition for each customer using $AUC$ as the evaluation metric.
-The $AUC$ on 30\% of the testing data is $\sim0.719$.
+The best $AUC$ on 30\% of the testing data is $\sim0.719$.
 
 The most important features are:
 
