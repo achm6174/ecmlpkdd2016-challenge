@@ -340,7 +340,7 @@ For a N-folds stacking:
 
 
 We only applied stacking on task 2 but not task 1.
-We tried two stacking method seperately:
+We tried two stacking method separately:
 \begin{enumerate}
  \item 2-folds stacking split by two time frames
 
@@ -362,13 +362,13 @@ will outperform stacking using only one single algorithm.
 Since we only used XGboost here, we compensated this by building several stacking features using randomized parameters to achieve diversification.
 
 
-\textbf{Fig. 1} shows the AUC perfomance of 5-folds Cross Validation and 30\% of testing data using same parameters and seed.
+\textbf{Fig. 1} shows the AUC performance of 5-folds Cross Validation and 30\% of testing data using same parameters and seed.
  There is a strong correlation in AUC between Cross Validation and 30\% of testing data.
- AUC is improved once stacking is applied and we included more randomized stacking feature until there is no improvement in AUC.
+ AUC is improved once stacking is applied and we included more randomized stacking features until there is no improvement in AUC.
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=115mm]{Rplot.png}
+\includegraphics[width=110mm]{Rplot.png}
 \caption{AUC of CV result and 30\% testing data using different number of stacking features. One standard deviation of the CV score is plotted via error bar. \label{overflow}}
 \end{figure}
 
@@ -421,7 +421,7 @@ Below are the parameters we used during training:
   \centering
   \caption{Parameters Optimization for XGboost}
   \label{tab:table1}
-  \begin{tabular}{p{3cm}p{3cm}p{4cm}p{2cm}}
+  \begin{tabular}{p{3cm}p{4.5cm}p{4cm}p{1cm}}
     \toprule
     Parameters & Description & Range of values & Final Choice \\
     \midrule
@@ -437,7 +437,6 @@ Below are the parameters we used during training:
     \bottomrule
   \end{tabular}
 \end{table}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
