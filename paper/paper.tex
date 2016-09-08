@@ -290,7 +290,7 @@ For a N-folds stacking using single first stage model:
 \begin{enumerate}
  \item Split the training set in $N$ parts: $training_1, training_2, ..., training_N$ using stratified or random split
 
- \item Build stacking feature by predicting $testing$ and $training_1$ using original features from $N-1$ folds ($training_2$, $training_3$, $...$, $training_N$) with first stage model
+ \item Train the first stage model using data from $N-1$ folds ($training_2$, $training_3$, $...$, $training_N$) and then build the stacking feature by predicting the target variable of $testing$ and $training_1$
 
  \item Similarly for $training_2, training_3, ... training_N$, the stacking feature for $testing$ is the average of $N$ predictions of $testing$
 
