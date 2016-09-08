@@ -271,7 +271,7 @@ All categorical data such as age group, gender, income group are one-hot-encoded
 
 \subsection{Transaction Features}
 The transaction time series is broken down monthly. For each month we calculated frequency of different events (high spending, morning transaction, etc.).
- For in-person events with geolocation information, we first calculated the distance using Euclidean distance between the customer address and the events,
+ For in-person events with geolocation information, we first calculated the distance between the customer address and the events,
  then we calculated the aggregate sum, standard deviation, median, maximum value of the distance grouped by customer and month.
 
 \subsection{Branch Features}
