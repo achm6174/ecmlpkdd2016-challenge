@@ -340,7 +340,7 @@ For a N-folds stacking using single first stage model:
 
 
 We only applied stacking for task 2 but not task 1.
-We tried two stacking method separately:
+We tried two stacking methods separately:
 \begin{enumerate}
  \item 2-folds stacking split by two time frames
 
@@ -348,7 +348,7 @@ We tried two stacking method separately:
 \end{enumerate}
 
 Since stacking index must be fixed in order to avoid leakage, we can only use either 2-folds or 10-folds stacking.
-Although 10-folds is a common choice as it provides minimal information loss, we finally decided using 2-folds for two reasons:
+Although 10-folds stacking is a common choice as it provides minimal information loss, we finally applied 2-folds stacking for two reasons:
 \begin{enumerate}
  \item The training data is a combination data in two different time periods. If folds are split by time,
   stacking feature is built based on information from another time period, which is useful to avoid overfitting.
@@ -368,7 +368,7 @@ Since we only used XGboost here, we compensated this by building multiple stacki
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=95mm]{Rplot.png}
+\includegraphics[width=102mm]{Rplot.png}
 \caption{Task 2 $AUC$ of 5-folds CV result (Same parameters) and Prediction on 30\% testing data using different number of stacking features.
  The error bar represents one standard deviation of the CV score. \label{overflow}}
 \end{figure}
