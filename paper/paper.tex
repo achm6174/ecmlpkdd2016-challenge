@@ -285,16 +285,16 @@ The idea of Stacked Generalization \cite{stacking} is to use a group of first st
  followed by a second stage model using all the predictions from first stage models as input features.
 
 
-For a N-folds stacking:
+For a N-folds stacking using single first stage model:
 
 \begin{enumerate}
  \item Split the training set in $N$ parts: $training_1, training_2, ..., training_N$ using stratified or random split
 
- \item Predict $testing$ and $training_1$ using original features from $N-1$ folds ($training_2$, $training_3$, $...$, $training_N$) with first stage models
+ \item Build stacking feature by predicting $testing$ and $training_1$ using original features from $N-1$ folds ($training_2$, $training_3$, $...$, $training_N$) with first stage model
 
- \item Similarly for $training_2, training_3, ... training_N$, the prediction for testing is the average of $N$ predictions of $testing$
+ \item Similarly for $training_2, training_3, ... training_N$, the stacking feature for $testing$ is the average of $N$ predictions of $testing$
 
- \item Train the second stage model based on original features and first stage predictions
+ \item Train the second stage model based on original features and stacking feature
 \end{enumerate}
 %
 
@@ -368,7 +368,7 @@ Since we only used XGboost here, we compensated this by building multiple stacki
 
 \begin{figure}[ht!]
 \centering
-\includegraphics[width=100mm]{Rplot.png}
+\includegraphics[width=95mm]{Rplot.png}
 \caption{Task 2 $AUC$ of 5-folds CV result (Same parameters) and Prediction on 30\% testing data using different number of stacking features.
  The error bar represents one standard deviation of the CV score. \label{overflow}}
 \end{figure}

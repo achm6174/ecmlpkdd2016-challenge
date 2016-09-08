@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  8 SEP 2016 20:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.4.11)  8 SEP 2016 21:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -872,11 +872,16 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 
 \openout3 = `paper.upa'.
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] <Rplot.png, id=69, 932.48375pt x 653.44125pt>
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
+Overfull \hbox (5.22939pt too wide) in paragraph at lines 295--296
+[]\T1/clm2/m/n/10 (-20) Similarly for $\OML/lmm/m/it/10 training[]; training[]; :::training[]$\T1/clm2/m/n/10 (-20) , the stack-ing fea-ture for $\OML/lmm/m/it/10 testing$
+ []
+
+[3] <Rplot.png, id=69, 932.48375pt x 653.44125pt>
 File: Rplot.png Graphic file (type png)
  <use Rplot.png>
 Package pdftex.def Info: Rplot.png used on input line 371.
-(pdftex.def)             Requested size: 284.52756pt x 199.38403pt.
+(pdftex.def)             Requested size: 270.30118pt x 189.41335pt.
  [4 <./Rplot.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 426--427
 []\T1/clm2/m/n/9 (+20) Final
@@ -910,7 +915,7 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 488.
  ) 
 Here is how much of TeX's memory you used:
  16329 strings out of 493089
- 264425 string characters out of 6134842
+ 264429 string characters out of 6134842
  465926 words of memory out of 5000000
  19354 multiletter control sequences out of 15000+600000
  70372 words of font info for 154 fonts, out of 8000000 for 9000
@@ -918,7 +923,7 @@ Here is how much of TeX's memory you used:
  42i,14n,55p,1149b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/dotdigits-clm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/cfr-lm/t1-clm.enc}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmbx9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmmi9.pfb></usr/local/texlive/2015/texmf-
 dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmr9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/lm/lmvtt10.pfb>
-Output written on paper.pdf (6 pages, 297767 bytes).
+Output written on paper.pdf (6 pages, 297838 bytes).
 PDF statistics:
  192 PDF objects out of 1000 (max. 8388607)
  144 compressed objects within 2 object streams
