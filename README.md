@@ -9,7 +9,7 @@ The Bank wants to know wich branch will be visited by each customer to be able t
 The customer will be proactively called in campaigns from the branch that will be visited with the highest probability. The bank expects higher conversion rates in branch campaigns if the call is made in the branch mostly prefered by the customer.
 
 ## Our approach
-Our approach rank 1st and the paper was presented at ECMLPKDD2016.
+Our approach rank 1st and the paper was presented at ECMLPKDD2016. Please read our paper for details.
 
 ## Instruction
 * run `main_feature_engineering.Rmd`, `main_train_stacking.Rmd`.
