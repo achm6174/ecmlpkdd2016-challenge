@@ -15,5 +15,4 @@ Our approach rank 1st and the paper was presented at ECMLPKDD2016. Please read o
 * run `main_feature_engineering.Rmd`, `main_train_stacking.Rmd`.
 
 ## publication
-`./paper/paper.pdf`
 [`./paper/paper.pdf`](./paper/paper.pdf)
